@@ -21,10 +21,6 @@ main {
     background: white;
 }
 
-.tab-item, .tabs {
-    margin-bottom: 10px;
-}
-
 .tabs {
     display: flex;
     align-items: center;
@@ -42,6 +38,10 @@ main {
     margin-right: 24px;
 }
 
+.tab-item, .tabs {
+    margin-bottom: 20px;
+}
+
 .tab_active {
     color: #fff;
     background: #31c27c;
@@ -51,4 +51,55 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
     gap: 45px 20px;
+}
+
+.album a.title {
+    color: #000;
+}
+
+.album a {
+    color: #999;
+    text-decoration: none;
+}
+
+.album {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    line-height: 22px;
+    color: #999;
+}
+
+.cover, .cover>img {
+    width: 100%;
+}
+
+.cover {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.nowrap {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
+
+.mask img {
+    cursor: pointer;
 }
