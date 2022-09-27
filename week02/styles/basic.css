@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    height: 58px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
+}
+#menu {
+    flex: 1;
+}
+
+.menu {
+    margin-left: 24px;
+}
+#header-title {
+    flex: 1;
+}
+.header-title {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+#login {
+    flex: 1;
+}
+.login {
+    width: 50px;
+    margin-left: 50%;
+    font-family: system-ui;
+    color: #6e6d7a;
+    font-weight: 540;
+}
+#banner {
+    padding-top: 70px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.banner {
+    background-color: #f9f8fd;
+    height: 610px;
+}
+.banner-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-top: 55px;
+}
+.banner-details {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+.banner-button {
+    display: block;
+    margin: 19px auto;
+    text-align: center;
+    width: 81px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ea4c89;
+    padding-top: 10px;
+    color: white;
+    font: 800;
+    font-size: 15px;
+    font-family: system-ui;
+}
+/* .button-text {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-top:
+} */
