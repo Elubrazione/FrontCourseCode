@@ -1,28 +1,55 @@
 window.onload = function () {
+
     function createPost (e) {
-        var Container = createPostDom('div', 'post');
+        var container = createPostDom('div', 'post');
 
-        var Cover = createPostDom('div', 'cover');
-        var CovImg = createPostDom('img', e.cover);
-        Cover.appendChild(CovImg);
+        var cover = createPostDom('div', 'cover');
+        var covImg = createPostDom('img', e.cover);
+        cover.appendChild(covImg);
 
-        var Avatar = createPostDom('div', 'avatar');
-        var AvaImg = createPostDom('img', e.avatar);
-        Avatar.appendChild(AvaImg);
+        var avatar = createPostDom('div', 'avatar');
+        var avaImg = createPostDom('img', e.avatar);
+        // avaImg.width = '28';
+        // avaImg.height = '28';
+        avatar.appendChild(avaImg);
+        var name = createPostDom('a', e.name);
+        var badge = createPostDom('div', 'badge');
+        var badTex = createPostDom('a', e.badge);
+        badge.appendChild(badTex);
 
-        var Name = createPostDom('a', e.name);
-        var Badge = createPostDom('div', 'badge');
-        var BadTex = createPostDom('a', e.badge);
-        Badge.appendChild(BadTex);
+        var posterInfo = createPostDom('div', 'pinfo');
+        posterInfo.appendChild(avatar);
+        posterInfo.appendChild(name);
+        posterInfo.appendChild(badge);
 
         var likesContainer = createPostDom('div', 'likes');
         var likesImg = createPostDom('img', './imgs/icon-like.svg');
+        likesImg.width = '18';
         var likesNum = createPostDom('a', e.likes);
+        likesContainer.appendChild(likesImg);
+        likesContainer.appendChild(likesNum);
 
         var viewsContainer = createPostDom('div', 'views');
         var viewsImg = createPostDom('img', './imgs/icon-view.svg');
+        viewsImg.width = '18';
         var viewsNum = createPostDom('a', e.views);
+        viewsContainer.appendChild(viewsImg);
+        viewsContainer.appendChild(viewsNum);
 
+        var dataInfo = createPostDom('div', 'dinfo');
+        dataInfo.appendChild(likesContainer);
+        dataInfo.appendChild(viewsContainer);
+
+        var totalInfo = createPostDom('div', 'tinfo');
+        totalInfo.appendChild(posterInfo);
+        totalInfo.appendChild(dataInfo);
+
+        container.appendChild(cover);
+        container.appendChild(totalInfo);
+
+        // console.log(container);
+        var sec = document.getElementById('list');
+        sec.appendChild(container);
     }
 
     function createPostDom (type, name) {
@@ -34,6 +61,7 @@ window.onload = function () {
         } else {
             box.innerText = name;
         }
+        return box;
     }
 
     function LoadTaskData () {
@@ -45,12 +73,13 @@ window.onload = function () {
                 var json = JSON.parse(request.responseText);
                 for(let i = 0; i < json.length; i++) {
                     POST_DATA[i] = json[i];
+                    createPost(POST_DATA[i]);
                 }
             }
         }
     }
 
     var POST_DATA = [];
+
     LoadTaskData();
-    // console.log(POST_DATA);
 }

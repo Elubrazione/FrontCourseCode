@@ -1,0 +1,43 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.list {
+    margin: 16px 20px auto 20px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+.post {
+    display: flex;
+    flex-direction: column;
+}
+.cover, .cover>img {
+    width: 100%;
+}
+.cover {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+.pinfo, .dinfo, .tinfo, .likes, .views {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.pinfo {
+    flex: 1.5;
+    justify-content: flex-start;
+}
+.dinfo {
+    flex: 1;
+    justify-content: flex-end;
+}
+.likes, .views {
+    flex: 1;
+    justify-content: flex-end;
+}
