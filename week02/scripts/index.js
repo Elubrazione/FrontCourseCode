@@ -7,31 +7,36 @@ window.onload = function () {
         var covImg = createPostDom('img', e.cover);
         cover.appendChild(covImg);
 
+        var posterInfo = createPostDom('div', 'pinfo');
+
         var avatar = createPostDom('div', 'avatar');
         var avaImg = createPostDom('img', e.avatar);
-        // avaImg.width = '28';
-        // avaImg.height = '28';
+        avaImg.className = 'avatarimg';
         avatar.appendChild(avaImg);
-        var name = createPostDom('a', e.name);
-        var badge = createPostDom('div', 'badge');
-        var badTex = createPostDom('a', e.badge);
-        badge.appendChild(badTex);
-
-        var posterInfo = createPostDom('div', 'pinfo');
         posterInfo.appendChild(avatar);
+
+        var name = createPostDom('a', e.name);
+        name.className = 'poname';
         posterInfo.appendChild(name);
-        posterInfo.appendChild(badge);
+
+        if (e.badge != '') {
+            var badge = createPostDom('div', 'badge');
+            var badTex = createPostDom('a', e.badge);
+            badTex.className = 'badTex';
+            badge.appendChild(badTex);
+            posterInfo.appendChild(badge);
+        }
 
         var likesContainer = createPostDom('div', 'likes');
         var likesImg = createPostDom('img', './imgs/icon-like.svg');
-        likesImg.width = '18';
+        likesImg.width = '16';
         var likesNum = createPostDom('a', e.likes);
         likesContainer.appendChild(likesImg);
         likesContainer.appendChild(likesNum);
 
         var viewsContainer = createPostDom('div', 'views');
         var viewsImg = createPostDom('img', './imgs/icon-view.svg');
-        viewsImg.width = '18';
+        viewsImg.width = '16';
         var viewsNum = createPostDom('a', e.views);
         viewsContainer.appendChild(viewsImg);
         viewsContainer.appendChild(viewsNum);
