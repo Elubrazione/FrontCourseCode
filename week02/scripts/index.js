@@ -1,5 +1,27 @@
 window.onload = function () {
 
+    function LoadBanner () {
+
+        // var banner = document.createElement('div');
+        // document.body.appendChild(banner);
+        // banner.className = 'banner';
+        // banner.id = 'welcome';
+        var banner = document.getElementById('welcome');
+        console.log(banner);
+        banner.innerHTML = `
+            <img id="banner" src="./imgs/banner.webp" width="85%">
+            <div class="banner-text">Discover the world's top
+                </br>designers & creatives
+            </div>
+            <div class="banner-details">Dribbble is the leading destination to find &
+                </br>showcase creative work and home to the
+                </br>world's best design prefessionals.
+            </div>
+            <div id="banner-button">
+                <div class="banner-button">Sign up</div>
+            </div>`;
+    }
+
     function createPost (e) {
         var container = createPostDom('div', 'post');
 
@@ -72,6 +94,12 @@ window.onload = function () {
     }
 
     function LoadTaskData () {
+
+        var sec = document.createElement('section');
+        document.body.appendChild(sec);
+        sec.className = 'list';
+        sec.id = 'list';
+
         var request = new XMLHttpRequest();
         request.open('get', './task.json');
         request.send(null);
@@ -86,7 +114,56 @@ window.onload = function () {
         }
     }
 
+    function onClickMenu () {
+
+        var banner = document.getElementById('welcome');
+        if (banner.className === 'banner') {
+            menu.src = './imgs/icon-close.svg';
+            menu.width = '24';
+
+            var list = document.getElementById('list');
+            var footer = document.getElementById('footer');
+            list.remove();
+            footer.remove();
+
+            banner.innerHTML = `
+                <div class="menutext">Inspiration</div>
+                <div class="menutext">Find Work</div>
+                <div class="menutext">Learn Design</div>
+                <div class="menutext">Go Pro</div>
+                <div class="menutext">Hire Designers</div>`;
+            banner.className = 'tabbanner';
+        } else {
+            banner.className = 'banner';
+            menu.src = './imgs/icon-menu.svg';
+            menu.width = '18';
+            LoadBanner();
+            // console.log(POST_DATA);
+            LoadTaskData();
+            LoadFooter();
+        }
+    }
+
+    function LoadFooter () {
+        var footer = document.createElement('footer');
+        document.body.appendChild(footer);
+        footer.id = 'footer';
+        footer.innerHTML = `
+            <div class="foologo"><img src="./imgs/logo-red.svg"></div>
+            <div class="footext">
+                <a>Dribbble is the world's leading
+                    </br>community for creatives to share, grow
+                    </br>and get hired.
+                </a>
+            </div>`;
+    }
+
     var POST_DATA = [];
 
+    LoadBanner();
     LoadTaskData();
+    LoadFooter();
+
+    var menu = document.getElementById('menu').childNodes[1];
+    menu.addEventListener('click', onClickMenu);
 }
