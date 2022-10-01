@@ -31,6 +31,7 @@ window.onload = function () {
         var likesImg = createPostDom('img', './imgs/icon-like.svg');
         likesImg.width = '16';
         var likesNum = createPostDom('a', e.likes);
+        likesNum.className = 'number';
         likesContainer.appendChild(likesImg);
         likesContainer.appendChild(likesNum);
 
@@ -38,6 +39,7 @@ window.onload = function () {
         var viewsImg = createPostDom('img', './imgs/icon-view.svg');
         viewsImg.width = '16';
         var viewsNum = createPostDom('a', e.views);
+        viewsNum.className = 'number';
         viewsContainer.appendChild(viewsImg);
         viewsContainer.appendChild(viewsNum);
 

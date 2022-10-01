@@ -16,9 +16,9 @@
     height: 100%;
 }
 .cover {
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
 }
 .pinfo, .dinfo, .tinfo, .likes, .views {
     display: flex;
@@ -33,7 +33,7 @@
 }
 
 .pinfo {
-    flex: 2;
+    flex: 2.4;
     justify-content: flex-start;
     gap: 7px;
 }
@@ -45,11 +45,12 @@
 .likes, .views {
     flex: 1;
     justify-content: flex-end;
-    gap: 3px;
+    gap: 2px;
 }
+
 .poname {
-    font-size: 15px;
-    font-weight: 5450;
+    font-size: 16px;
+    font-weight: 545;
 }
 .avatarimg {
     height: 24px;
@@ -59,7 +60,7 @@
     background-color: rgb(206, 206, 206);
     height: 18px;
     border-radius: 4px;
-    margin-left: 3px;
+    margin-left: 1px;
 }
 .badTex {
     color: white;
@@ -68,4 +69,7 @@
     font-size: 10px;
     margin-left: 2px;
     margin-right: 2px;
+}
+.number {
+    font-size: 10px;
 }

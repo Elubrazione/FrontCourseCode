@@ -13,6 +13,18 @@ header {
     justify-content: center;
     box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
 }
+footer {
+    height: 323px;
+}
+.foologo {
+    width: 105px;
+    padding-top: 162px;
+    padding-left: 20px;
+}
+.footext {
+    margin-top: 28px;
+    margin-left: 20px;
+}
 #menu {
     flex: 1;
 }
@@ -46,7 +58,7 @@ header {
 }
 .banner {
     background-color: #f9f8fd;
-    height: 610px;
+    /* height: 610px; */
 }
 .banner-text {
     font-family: Arial, Helvetica, sans-serif;
@@ -66,6 +78,9 @@ header {
     text-align: center;
     padding-top: 20px;
 }
+#banner-button {
+    padding-bottom: 33px;
+}
 .banner-button {
     display: block;
     margin: 19px auto;
@@ -80,9 +95,3 @@ header {
     font-size: 15px;
     font-family: system-ui;
 }
-/* .button-text {
-    display: block;
-    margin: auto;
-    text-align: center;
-    padding-top:
-} */
