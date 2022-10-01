@@ -1,11 +1,12 @@
+
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
 .list {
-    margin: 16px 20px auto 20px;
+    margin: 16px 20px 114px 20px;
     display: grid;
     gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }
 .post {
     display: flex;
@@ -57,7 +58,7 @@
     width: 24px;
 }
 .badge {
-    background-color: rgb(206, 206, 206);
+    background-color: #cccccc;
     height: 18px;
     border-radius: 4px;
     margin-left: 1px;
@@ -73,3 +74,11 @@
 .number {
     font-size: 10px;
 }
+/* @media screen and (max-width: 320px) {
+    .list {
+        margin: 16px 0px 114px 0px;
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+} */

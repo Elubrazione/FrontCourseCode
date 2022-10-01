@@ -2,22 +2,20 @@ window.onload = function () {
 
     function LoadBanner () {
 
-        // var banner = document.createElement('div');
-        // document.body.appendChild(banner);
-        // banner.className = 'banner';
-        // banner.id = 'welcome';
         var banner = document.getElementById('welcome');
         console.log(banner);
+        banner.className = 'banner';
         banner.innerHTML = `
-            <img id="banner" src="./imgs/banner.webp" width="85%">
-            <div class="banner-text">Discover the world's top
-                </br>designers & creatives
+            <div class="banner-img">
+                <img id="banner" src="./imgs/banner.webp">
             </div>
-            <div class="banner-details">Dribbble is the leading destination to find &
-                </br>showcase creative work and home to the
-                </br>world's best design prefessionals.
-            </div>
-            <div id="banner-button">
+            <div class="banner-text">
+                <div class="banner-head">
+                    Discover the world's top designers & creatives
+                </div>
+                <div class="banner-details">
+                    Dribbble is the leading destination to find & showcase creative work and home to the world's best design prefessionals.
+                </div>
                 <div class="banner-button">Sign up</div>
             </div>`;
     }
@@ -134,7 +132,6 @@ window.onload = function () {
                 <div class="menutext">Hire Designers</div>`;
             banner.className = 'tabbanner';
         } else {
-            banner.className = 'banner';
             menu.src = './imgs/icon-menu.svg';
             menu.width = '18';
             LoadBanner();

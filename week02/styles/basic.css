@@ -5,6 +5,7 @@ html, body {
     height: 100%;
     margin: 0;
 }
+
 header {
     display: flex;
     flex-direction: row;
@@ -14,11 +15,12 @@ header {
     box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
 }
 footer {
-    height: 323px;
+    height: 210px;
+    background-color: #fafafa;
 }
 .foologo {
     width: 105px;
-    padding-top: 162px;
+    padding-top: 49px;
     padding-left: 20px;
 }
 .footext {
@@ -30,11 +32,6 @@ footer {
 }
 .menu {
     margin-left: 24px;
-}
-.tabbanner {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
 }
 .menutext {
     margin-top: 15px;
@@ -55,20 +52,26 @@ footer {
 }
 #login {
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 .login {
     width: 50px;
-    margin-left: 40%;
+    margin-right: 24px;
     font-family: system-ui;
     font-size: 15px;
     color: #6e6d7a;
     font-weight: 540;
 }
+
+.tabbanner {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
 #banner {
-    padding-top: 70px;
-    display: block;
-    margin: auto;
-    text-align: center;
+    margin-top: 68px;
+    width: 330px;
 }
 .banner {
     background-color: #f9f8fd;
@@ -76,31 +79,29 @@ footer {
     flex-direction: column;
     align-items: center;
 }
-
 .banner-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.banner-head {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 26px;
     font-weight: 600;
-    display: block;
-    margin: auto;
+    margin-top: 53px;
     text-align: center;
-    padding-top: 55px;
+    width: 302px;
 }
 .banner-details {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     font-weight: 400;
-    display: block;
-    margin: auto;
+    margin-top: 18px;
     text-align: center;
-    padding-top: 20px;
-}
-#banner-button {
-    padding-bottom: 33px;
+    width: 323px;
 }
 .banner-button {
-    display: block;
-    margin: 19px auto;
+    margin: 19px auto 49px auto;
     text-align: center;
     width: 81px;
     height: 40px;
@@ -108,10 +109,53 @@ footer {
     background-color: #ea4c89;
     padding-top: 10px;
     color: white;
-    font: 800;
+    font-weight: 550;
     font-size: 15px;
     font-family: system-ui;
 }
-@media screen and (min-width: 375px) {
-    
+
+@media screen and (min-width: 768px) {
+    .banner {
+        flex-direction: row-reverse;
+    }
+    .banner-text {
+        flex: 1;
+        align-items: flex-start;
+    }
+    .banner-head, .banner-details {
+        margin-left: 32px;
+        text-align: left;
+    }
+    .banner-head {
+        margin-top: 100px;
+        width: 200px;
+        font-size: 30px;
+    }
+    .banner-details {
+        width: 310px;
+        margin-top: 28px;
+    }
+    .banner-button {
+        margin-left: 32px;
+        margin-bottom: 92px;
+        margin-top: 25px;
+    }
+    .banner-img {
+        flex: 1.15;
+        display: flex;
+    }
+    #banner {
+        width: 360px;
+        margin: auto;
+        margin-left: 0px;
+    }
+}
+@media screen and (min-width: 920px) {
+
+}
+@media screen and (min-width: 1366px) {
+
+}
+@media screen and (min-width: 1920px) {
+
 }
