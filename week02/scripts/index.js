@@ -1,9 +1,47 @@
+//响应式的菜单怎么搞 怎么做到页面大小变了菜单变化
 window.onload = function () {
 
-    function LoadBanner () {
+    function LoadMinHeader () {
+        var header = document.getElementById('header');
+        console.log(header);
+        header.innerHTML = `
+            <div id="menu">
+                <img src="./imgs/icon-menu.svg" width="18" class="menu">
+            </div>
+            <div id="header-title">
+                <img src="./imgs/logo-black.svg" width="82" class="header-title">
+            </div>
+            <div id="login">
+                <div class="login">Sign in</div>
+            </div>`;
+        var menu = document.getElementById('menu').childNodes[1];
+        menu.addEventListener('click', onClickMenu);
+    }
 
+    function LoadMaxHeader () {
+        var header = document.getElementById('header');
+        header.innerHTML = `
+            <div class="header-left">
+                <div id="header-title-plu">
+                    <img src="./imgs/logo-black.svg" width="76" class="header-title">
+                </div>
+                <div class="menu-container">
+                    <div class="menutext-plus">Inspiration</div>
+                    <div class="menutext-plus">Find Work</div>
+                    <div class="menutext-plus">Learn</div>
+                    <div class="menutext-plus">Go Pro</div>
+                    <div class="menutext-plus">Hire Designers</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="login-plus">Sign in</div>
+                <div class="banner-button-plus">Sign up</div>
+            </div>`;
+    }
+
+    function LoadBanner () {
         var banner = document.getElementById('welcome');
-        console.log(banner);
+        // console.log(banner);
         banner.className = 'banner';
         banner.innerHTML = `
             <div class="banner-img">
@@ -49,7 +87,7 @@ window.onload = function () {
 
         var likesContainer = createPostDom('div', 'likes');
         var likesImg = createPostDom('img', './imgs/icon-like.svg');
-        likesImg.width = '16';
+        likesImg.width = '14';
         var likesNum = createPostDom('a', e.likes);
         likesNum.className = 'number';
         likesContainer.appendChild(likesImg);
@@ -57,7 +95,7 @@ window.onload = function () {
 
         var viewsContainer = createPostDom('div', 'views');
         var viewsImg = createPostDom('img', './imgs/icon-view.svg');
-        viewsImg.width = '16';
+        viewsImg.width = '14';
         var viewsNum = createPostDom('a', e.views);
         viewsNum.className = 'number';
         viewsContainer.appendChild(viewsImg);
@@ -156,11 +194,29 @@ window.onload = function () {
     }
 
     var POST_DATA = [];
+    var width = document.documentElement.clientWidth;
 
-    LoadBanner();
-    LoadTaskData();
-    LoadFooter();
+    if (width < 920) {
+        LoadMinHeader();
+        LoadBanner();
+        LoadTaskData();
+        LoadFooter();
+    } else if (width < 1366) {
+        LoadMaxHeader();
+        LoadBanner();
+        LoadTaskData();
+        LoadFooter();
+    } else if (width < 1920) {
 
-    var menu = document.getElementById('menu').childNodes[1];
-    menu.addEventListener('click', onClickMenu);
+    }
+
+    window.addEventListener('resize', function () {
+        var width = document.documentElement.clientWidth;
+        console.log(width);
+        if (width >= 920) {
+            LoadMaxHeader();
+        } else {
+            LoadMinHeader();
+        }
+    })
 }

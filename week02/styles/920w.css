@@ -1,0 +1,73 @@
+@media screen and (min-width: 920px) {
+    .banner-img {
+        flex: 1;
+    }
+    .banner-text {
+        flex: 1.25;
+    }
+    .banner-head {
+        width: 380px;
+        margin-top: 136px;
+    }
+    .banner-details {
+        width: 410px;
+        margin-top: 22px;
+        font-size: 15.5px;
+    }
+    .banner-button {
+        margin-top: 22px;
+        margin-bottom: 130px;
+    }
+    header {
+        height: 80px;
+    }
+    .header-left {
+        flex: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .header-title {
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+    .menu-container {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        align-items: center;
+    }
+    .menutext-plus {
+        font-size: 14px;
+        font-weight: 550;
+        color: #6e6d7a;
+    }
+    .header-right {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .banner-button-plus {
+        width: 81px;
+        height: 40px;
+        border-radius: 10px;
+        background-color: #ea4c89;
+        color: white;
+        font-weight: 550;
+        font-size: 15px;
+        font-family: system-ui;
+        text-align: center;
+        padding-top: 10px;
+        margin-right: 24px;
+    }
+    .login-plus {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 24px;
+        color: #6e6d7a;
+        font-size: 15px;
+        font-weight: 540;
+    }
+}

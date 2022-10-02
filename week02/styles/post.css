@@ -1,12 +1,8 @@
-
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
 .list {
     margin: 16px 20px 114px 20px;
     display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 35px;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
 }
 .post {
     display: flex;
@@ -36,7 +32,7 @@
 .pinfo {
     flex: 2.4;
     justify-content: flex-start;
-    gap: 7px;
+    gap: 6px;
 }
 .dinfo {
     flex: 1;
@@ -50,7 +46,7 @@
 }
 
 .poname {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 545;
 }
 .avatarimg {
@@ -72,13 +68,5 @@
     margin-right: 2px;
 }
 .number {
-    font-size: 10px;
+    font-size: 8px;
 }
-/* @media screen and (max-width: 320px) {
-    .list {
-        margin: 16px 0px 114px 0px;
-        display: grid;
-        gap: 30px;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    }
-} */

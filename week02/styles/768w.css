@@ -1,0 +1,41 @@
+@media screen and (min-width: 768px) {
+    .banner {
+        flex-direction: row-reverse;
+    }
+    .banner-text {
+        flex: 1;
+        align-items: flex-start;
+    }
+    .banner-head, .banner-details {
+        margin-left: 32px;
+        text-align: left;
+    }
+    .banner-head {
+        margin-top: 100px;
+        width: 200px;
+        font-size: 30px;
+    }
+    .banner-details {
+        width: 310px;
+        margin-top: 28px;
+    }
+    .banner-button {
+        margin-left: 32px;
+        margin-bottom: 80px;
+        margin-top: 25px;
+    }
+    .banner-img {
+        flex: 1.2;
+        display: flex;
+    }
+    #banner {
+        width: 360px;
+        margin: auto;
+        margin-left: 0px;
+    }
+    .list {
+        margin-left: 32px;
+        margin-right: 32px;
+        gap: 38px;
+    }
+}

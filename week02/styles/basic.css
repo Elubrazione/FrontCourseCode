@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: system-ui;
 }
 html, body {
     height: 100%;
@@ -44,11 +45,8 @@ footer {
 }
 #header-title {
     flex: 1;
-}
-.header-title {
-    display: block;
-    margin: auto;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 #login {
     flex: 1;
@@ -58,7 +56,6 @@ footer {
 .login {
     width: 50px;
     margin-right: 24px;
-    font-family: system-ui;
     font-size: 15px;
     color: #6e6d7a;
     font-weight: 540;
@@ -85,16 +82,14 @@ footer {
     align-items: center;
 }
 .banner-head {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 26px;
     font-weight: 600;
     margin-top: 53px;
     text-align: center;
-    width: 302px;
+    width: 320px;
 }
 .banner-details {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;
     margin-top: 18px;
     text-align: center;
@@ -112,50 +107,4 @@ footer {
     font-weight: 550;
     font-size: 15px;
     font-family: system-ui;
-}
-
-@media screen and (min-width: 768px) {
-    .banner {
-        flex-direction: row-reverse;
-    }
-    .banner-text {
-        flex: 1;
-        align-items: flex-start;
-    }
-    .banner-head, .banner-details {
-        margin-left: 32px;
-        text-align: left;
-    }
-    .banner-head {
-        margin-top: 100px;
-        width: 200px;
-        font-size: 30px;
-    }
-    .banner-details {
-        width: 310px;
-        margin-top: 28px;
-    }
-    .banner-button {
-        margin-left: 32px;
-        margin-bottom: 92px;
-        margin-top: 25px;
-    }
-    .banner-img {
-        flex: 1.15;
-        display: flex;
-    }
-    #banner {
-        width: 360px;
-        margin: auto;
-        margin-left: 0px;
-    }
-}
-@media screen and (min-width: 920px) {
-
-}
-@media screen and (min-width: 1366px) {
-
-}
-@media screen and (min-width: 1920px) {
-
 }
