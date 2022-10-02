@@ -70,4 +70,7 @@
         font-size: 15px;
         font-weight: 540;
     }
+    .list {
+        margin-bottom: 56px;
+    }
 }

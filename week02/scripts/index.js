@@ -201,13 +201,11 @@ window.onload = function () {
         LoadBanner();
         LoadTaskData();
         LoadFooter();
-    } else if (width < 1366) {
+    } else {
         LoadMaxHeader();
         LoadBanner();
         LoadTaskData();
         LoadFooter();
-    } else if (width < 1920) {
-
     }
 
     window.addEventListener('resize', function () {

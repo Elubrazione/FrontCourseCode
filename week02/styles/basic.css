@@ -18,11 +18,13 @@ header {
 footer {
     height: 210px;
     background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
 }
 .foologo {
     width: 105px;
-    padding-top: 49px;
-    padding-left: 20px;
+    margin-top: 49px;
+    margin-left: 20px;
 }
 .footext {
     margin-top: 28px;

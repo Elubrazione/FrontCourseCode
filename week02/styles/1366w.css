@@ -1,3 +1,37 @@
 @media screen and (min-width: 1366px) {
-
+    .list {
+        grid-template-columns: repeat(4, minmax(280px, 1fr));
+        margin: 32px 72px 42px 72px;
+    }
+    .banner-head, .banner-details, .banner-button {
+        margin-left: 72px;
+    }
+    #footer {
+        height: 270px;
+    }
+    .foologo {
+        width: 105px;
+        margin-top: 70px;
+        margin-left: 72px;
+    }
+    .footext {
+        margin-left: 72px;
+    }
+    .tinfo {
+        gap: 14px;
+    }
+    .banner-text {
+        flex: 1.4;
+    }
+    .banner-head{
+        width: 560px;
+        font-size: 45px;
+    }
+    .banner-details {
+        width: 610px;
+    }
+    #banner {
+        width: 485px;
+        margin-right: 85px;
+    }
 }
