@@ -6,12 +6,6 @@
   - [目录](#目录)
   - [要求清单](#要求清单)
   - [效果总览](#效果总览)
-    - [task-menu-375w](#task-menu-375w)
-    - [task-768w](#task-768w)
-    - [task-920w](#task-920w)
-    - [task-1366w](#task-1366w)
-    - [task-1920w](#task-1920w)
-    - [task-hover](#task-hover)
   - [完成思路](#完成思路)
   - [问题及解决方式](#问题及解决方式)
 
@@ -25,43 +19,39 @@
 - `task-hover`：平铺的导航菜单鼠标悬停时有改变颜色。
 
 ## 效果总览
+
 **1. task-375w**
+<img src="./mdsrc/375w.gif">
 
-<img src="./mdsrc/375w.png" width="32%">
-<img src="./mdsrc/375ww.png" width="32%">
-<img src="./mdsrc/375www.png" width="32%">
+**2. task-menu-375w**
+<img src="./mdsrc/menu-375w.gif">
 
-![tishi](./mdsrc/375w.png)
+**3. task-768w**
+<img src="./mdsrc/768w.gif">
 
-### task-menu-375w
-<image src="./mdsrc/menu-375w.png" width="48%">
-<image src="./mdsrc/menu-375ww.png" width="48%">
+**4. task-920w**
+<img src="./mdsrc/920w.gif">
 
-### task-768w
-<image src="./mdsrc/768w.png" width="48%">
-<image src="./mdsrc/768ww.png" width="48%">
+**5. task-1366w**
+<img src="./mdsrc/1366w.gif">
 
-### task-920w
-<image src="./mdsrc/920w.png" width="48%">
-<image src="./mdsrc/920ww.png" width="48%">
+**6. task-1920w**
+<img src="./mdsrc/1920w.gif">
 
-### task-1366w
-<image src="./mdsrc/1366w.png" width="48%">
-<image src="./mdsrc/1366ww.png" width="48%">
+**7. task-hover**
+菜单鼠标悬停时改变颜色，效果已在 `task-920w` 中展示。
 
-### task-1920w
-<image src="./mdsrc/1920w.png" width="96%">
-<center>页宽为1920px时的页首</center>
-
-<image src="./mdsrc/1920ww.png" width="96%">
-<center>页宽为1920px时的页尾</center>
-
-### task-hover
-菜单鼠标悬停时改变颜色，在页宽小于1366w时文字渲染为 `Learn`，大于时则为 `Learn Design`
-
-<image src="./mdsrc/hoverw.png" width="48%">
-<image src="./mdsrc/hoverww.png" width="48%">
+**8. 过渡效果总览**
+<img src="./mdsrc/trans.gif">
 
 ## 完成思路
+1. 完成task.json数据文件的导入、页面DOM节点创建JS函数；
+2. 完成 `task-375w` 的初始html界面：header、banner、footer，调整好基础的CSS样式；
+3. 完成 `task-menu-375w` 中的html页面和CSS样式，编写对应的DOM节点增删操作代码，绑定页面监听事件；
+4. 完成 `task-768w`，编写媒体查询设置断点改变对应的CSS；
+5. 完成 `task-920w`，因为从920w开始导航菜单平铺，所以要重新编写菜单栏渲染函数；同时修改 `window.onload()` 函数，在Load菜单时判断当前页面的宽度，Load不同的菜单栏；剩下的就是编写媒体查询设置断点改变对应的CSS；
+6. 完成 `task-1366w`，编写媒体查询设置断点改变对应的CSS；
+7. 完成 `task-1920w`，编写媒体查询设置断点改变对应的CSS；
+8. 完成 `task-hover`，编写媒体查询设置断点改变对应的CSS。
 
 ## 问题及解决方式
