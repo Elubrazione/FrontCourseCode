@@ -6,7 +6,6 @@
   - [目录](#目录)
   - [要求清单](#要求清单)
   - [效果总览](#效果总览)
-    - [task-375w](#task-375w)
     - [task-menu-375w](#task-menu-375w)
     - [task-768w](#task-768w)
     - [task-920w](#task-920w)
@@ -26,10 +25,13 @@
 - `task-hover`：平铺的导航菜单鼠标悬停时有改变颜色。
 
 ## 效果总览
-### task-375w
-<image src="./mdsrc/375w.png" width="32%">
-<image src="./mdsrc/375ww.png" width="32%">
-<image src="./mdsrc/375www.png" width="32%">
+**1. task-375w**
+
+<img src="./mdsrc/375w.png" width="32%">
+<img src="./mdsrc/375ww.png" width="32%">
+<img src="./mdsrc/375www.png" width="32%">
+
+![tishi](./mdsrc/375w.png)
 
 ### task-menu-375w
 <image src="./mdsrc/menu-375w.png" width="48%">
