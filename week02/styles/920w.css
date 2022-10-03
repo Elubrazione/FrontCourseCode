@@ -42,6 +42,11 @@
         font-weight: 550;
         color: #6e6d7a;
     }
+    .menutext-plus:hover {
+        color: #ea4c89;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
     .header-right {
         flex: 1;
         display: flex;
@@ -69,6 +74,9 @@
         color: #6e6d7a;
         font-size: 15px;
         font-weight: 540;
+    }
+    .login-plus:hover, .banner-button-plus:hover {
+        cursor: pointer;
     }
     .list {
         margin-bottom: 56px;

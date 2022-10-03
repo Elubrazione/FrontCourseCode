@@ -1,4 +1,3 @@
-//响应式的菜单怎么搞 怎么做到页面大小变了菜单变化
 window.onload = function () {
 
     function LoadMinHeader () {
@@ -18,6 +17,7 @@ window.onload = function () {
         menu.addEventListener('click', onClickMenu);
     }
 
+
     function LoadMaxHeader () {
         var header = document.getElementById('header');
         header.innerHTML = `
@@ -28,7 +28,7 @@ window.onload = function () {
                 <div class="menu-container">
                     <div class="menutext-plus">Inspiration</div>
                     <div class="menutext-plus">Find Work</div>
-                    <div class="menutext-plus">Learn</div>
+                    <div class="menutext-plus" id="spec">Learn Design</div>
                     <div class="menutext-plus">Go Pro</div>
                     <div class="menutext-plus">Hire Designers</div>
                 </div>
@@ -37,26 +37,38 @@ window.onload = function () {
                 <div class="login-plus">Sign in</div>
                 <div class="banner-button-plus">Sign up</div>
             </div>`;
+
+        var width = document.documentElement.clientWidth;
+        if (width < 1366) {
+            document.getElementById('spec').innerText = 'Learn';
+        }
+
     }
 
+
     function LoadBanner () {
-        var banner = document.getElementById('welcome');
+        var banner = document.createElement('div');
+        banner.id = 'welcome';
+        document.body.appendChild(banner);
         // console.log(banner);
-        banner.className = 'banner';
+        // banner.className = 'banner';
         banner.innerHTML = `
-            <div class="banner-img">
-                <img id="banner" src="./imgs/banner.webp">
-            </div>
-            <div class="banner-text">
-                <div class="banner-head">
-                    Discover the world's top designers & creatives
+            <div class="banner">
+                <div class="banner-img">
+                    <img id="banner" src="./imgs/banner.webp">
                 </div>
-                <div class="banner-details">
-                    Dribbble is the leading destination to find & showcase creative work and home to the world's best design prefessionals.
+                <div class="banner-text">
+                    <div class="banner-head">
+                        Discover the world's top designers & creatives
+                    </div>
+                    <div class="banner-details">
+                        Dribbble is the leading destination to find & showcase creative work and home to the world's best design prefessionals.
+                    </div>
+                    <div class="banner-button">Sign up</div>
                 </div>
-                <div class="banner-button">Sign up</div>
             </div>`;
     }
+
 
     function createPost (e) {
         var container = createPostDom('div', 'post');
@@ -117,6 +129,7 @@ window.onload = function () {
         sec.appendChild(container);
     }
 
+
     function createPostDom (type, name) {
         var box = document.createElement(type);
         if (type === 'div') {
@@ -128,6 +141,7 @@ window.onload = function () {
         }
         return box;
     }
+
 
     function LoadTaskData () {
 
@@ -150,34 +164,46 @@ window.onload = function () {
         }
     }
 
+
     function onClickMenu () {
 
         var banner = document.getElementById('welcome');
-        if (banner.className === 'banner') {
+        var menu = document.getElementById('menu').childNodes[1];
+        if (banner != null) {
             menu.src = './imgs/icon-close.svg';
             menu.width = '24';
 
             var list = document.getElementById('list');
             var footer = document.getElementById('footer');
+            banner.remove();
             list.remove();
             footer.remove();
 
-            banner.innerHTML = `
+            var unfoldMenu = document.createElement('div');
+            document.body.appendChild(unfoldMenu);
+            unfoldMenu.id = 'unfoldMenu';
+            unfoldMenu.innerHTML = `
                 <div class="menutext">Inspiration</div>
                 <div class="menutext">Find Work</div>
                 <div class="menutext">Learn Design</div>
                 <div class="menutext">Go Pro</div>
                 <div class="menutext">Hire Designers</div>`;
-            banner.className = 'tabbanner';
+            unfoldMenu.className = 'tabbanner';
+
         } else {
+
             menu.src = './imgs/icon-menu.svg';
             menu.width = '18';
+            var unfoldMenu = document.getElementById('unfoldMenu');
+            unfoldMenu.remove();
+
             LoadBanner();
             // console.log(POST_DATA);
             LoadTaskData();
             LoadFooter();
         }
     }
+
 
     function LoadFooter () {
         var footer = document.createElement('footer');
@@ -192,6 +218,7 @@ window.onload = function () {
                 </a>
             </div>`;
     }
+
 
     var POST_DATA = [];
     var width = document.documentElement.clientWidth;
@@ -209,9 +236,9 @@ window.onload = function () {
     }
 
     window.addEventListener('resize', function () {
-        var width = document.documentElement.clientWidth;
-        console.log(width);
-        if (width >= 920) {
+        var widthListen = document.documentElement.clientWidth;
+        console.log(widthListen);
+        if (widthListen >= 920) {
             LoadMaxHeader();
         } else {
             LoadMinHeader();

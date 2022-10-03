@@ -1,3 +1,23 @@
 @media screen and (min-width: 1920px) {
-
+    #welcome {
+        background-color: #f9f8fd;
+        display: flex;
+        justify-content: center;
+    }
+    .banner {
+        width: 1548px;
+        justify-content: center;
+    }
+    #banner {
+        margin-right: 0px;
+    }
+    .banner-img {
+        justify-content: flex-end;
+    }
+    .banner-head, .banner-details, .banner-button {
+        margin-left: 0px;
+    }
+    .foologo, .footext {
+        margin-left: 192px;
+    }
 }
