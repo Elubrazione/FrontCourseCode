@@ -6,6 +6,7 @@
   - [目录](#目录)
   - [要求清单](#要求清单)
   - [效果总览](#效果总览)
+    - [动画过渡效果](#动画过渡效果)
   - [完成思路](#完成思路)
   - [问题及解决方式](#问题及解决方式)
 
@@ -21,27 +22,33 @@
 ## 效果总览
 
 **1. task-375w**
+
 <img src="./mdsrc/375w.gif">
 
 **2. task-menu-375w**
+
 <img src="./mdsrc/menu-375w.gif">
 
 **3. task-768w**
+
 <img src="./mdsrc/768w.gif">
 
 **4. task-920w**
+
 <img src="./mdsrc/920w.gif">
 
 **5. task-1366w**
+
 <img src="./mdsrc/1366w.gif">
 
 **6. task-1920w**
+
 <img src="./mdsrc/1920w.gif">
 
 **7. task-hover**
 菜单鼠标悬停时改变颜色，效果已在 `task-920w` 中展示。
 
-**8. 过渡效果总览**
+### 动画过渡效果
 <img src="./mdsrc/trans.gif">
 
 ## 完成思路
@@ -52,6 +59,19 @@
 5. 完成 `task-920w`，因为从920w开始导航菜单平铺，所以要重新编写菜单栏渲染函数；同时修改 `window.onload()` 函数，在Load菜单时判断当前页面的宽度，Load不同的菜单栏；剩下的就是编写媒体查询设置断点改变对应的CSS；
 6. 完成 `task-1366w`，编写媒体查询设置断点改变对应的CSS；
 7. 完成 `task-1920w`，编写媒体查询设置断点改变对应的CSS；
-8. 完成 `task-hover`，编写媒体查询设置断点改变对应的CSS。
+8. 完成 `task-hover`，添加hover样式，改变 `color` 属性的值。
 
 ## 问题及解决方式
+**1. 怎么在920w的时候使用CSS和媒体查询的方式来使导航菜单栏平铺**
+* 用JS代码，在 `window.onload()` 函数中添加如下代码：
+    ```bash
+    var width = document.documentElement.clientWidth;
+    if (width < 920) {
+        LoadMinHeader();
+        ···
+    } else {
+        LoadMaxHeader();
+        ···
+    }
+    ```
+    做两个导航菜单Load函数（`LoadMinHeader` 和 `LoadMaxHeader`），在不同的情况下Load适配的导航栏
