@@ -52,8 +52,8 @@
 <img src="./mdsrc/trans.gif">
 
 ## 完成思路
-1. 完成task.json数据文件的导入、页面DOM节点创建JS函数；
-2. 完成 `task-375w` 的初始html界面：header、banner、footer，调整好基础的CSS样式；
+1. 完成task.json数据文件的导入、页面用户POST总节点创建的JS函数：`createPost()`以及具有复用功能的DOM节点创建函数 `createPostDom()`；
+2. 完成 `task-375w` 的初始html界面：header、banner、footer，编写各个模块的Load函数，调整好基础的CSS样式；
 3. 完成 `task-menu-375w` 中的html页面和CSS样式，编写对应的DOM节点增删操作代码，绑定页面监听事件；
 4. 完成 `task-768w`，编写媒体查询设置断点改变对应的CSS；
 5. 完成 `task-920w`，因为从920w开始导航菜单平铺，所以要重新编写菜单栏渲染函数；同时修改 `window.onload()` 函数，在Load菜单时判断当前页面的宽度，Load不同的菜单栏；剩下的就是编写媒体查询设置断点改变对应的CSS；
@@ -64,6 +64,7 @@
 ## 问题及解决方式
 **1. 怎么在920w的时候使用CSS和媒体查询的方式来使导航菜单栏平铺**
 * 用JS代码，在 `window.onload()` 函数中添加如下代码：
+
     ```bash
     var width = document.documentElement.clientWidth;
     if (width < 920) {

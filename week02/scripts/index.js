@@ -17,7 +17,6 @@ window.onload = function () {
         menu.addEventListener('click', onClickMenu);
     }
 
-
     function LoadMaxHeader () {
         var header = document.getElementById('header');
         header.innerHTML = `
@@ -45,7 +44,6 @@ window.onload = function () {
 
     }
 
-
     function LoadBanner () {
         var banner = document.createElement('div');
         banner.id = 'welcome';
@@ -68,7 +66,6 @@ window.onload = function () {
                 </div>
             </div>`;
     }
-
 
     function createPost (e) {
         var container = createPostDom('div', 'post');
@@ -129,7 +126,6 @@ window.onload = function () {
         sec.appendChild(container);
     }
 
-
     function createPostDom (type, name) {
         var box = document.createElement(type);
         if (type === 'div') {
@@ -141,7 +137,6 @@ window.onload = function () {
         }
         return box;
     }
-
 
     function LoadTaskData () {
 
@@ -163,7 +158,6 @@ window.onload = function () {
             }
         }
     }
-
 
     function onClickMenu () {
 
@@ -203,7 +197,6 @@ window.onload = function () {
             LoadFooter();
         }
     }
-
 
     function LoadFooter () {
         var footer = document.createElement('footer');
