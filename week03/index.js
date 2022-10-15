@@ -14,15 +14,22 @@ window.onload = function () {
                 alert('Input could not be NULL!')
                 return;
             } else {
-                let todoItem = {
-                    detail: input.value,
-                    finish: false,
-                }
-                todoListArray.push(todoItem);
-                window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
-                input.value = '';
+                let judge = todoListArray.find(ele => ele?.detail === input.value);
+                console.log(judge);
+                if (judge != undefined) {
+                    alert('Repetitious task! You have already added this task!');
+                    return;
+                } else {
+                    let todoItem = {
+                        detail: input.value,
+                        finish: false,
+                    }
+                    todoListArray.push(todoItem);
+                    window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+                    input.value = '';
 
-                createTodoDom(todoItem);
+                    createTodoDom(todoItem);
+                }
             }
         }
     }
