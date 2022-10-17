@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    color: #333;
+}
+#root {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.title {
+    color: #4f89ff;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgb(0 0 0 / 50%);
+}
+.input {
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    color: #333;
+}
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+.todo-item .iconfont {
+    color: #ccc;
+    font-size: 24px;
+    cursor: pointer;
+}
+.todo-title {
+    flex: 2;
+    margin: 0 15px;
+    font-size: 18px;
+    line-height: 1.5em;
+    border:  white;
+    outline: none;
+}
+.todo-finished .todo-title {
+    text-decoration: line-through;
+    color: #bbb;
+}
+.todo-finished .icon-checkbox {
+    color: #4f89ff;
+}
+.modified-time {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.5em;
+}
