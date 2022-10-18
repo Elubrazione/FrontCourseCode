@@ -46,7 +46,7 @@ header {
     cursor: pointer;
 }
 .todo-title {
-    flex: 2;
+    flex: 2.3;
     margin: 0 15px;
     font-size: 18px;
     line-height: 1.5em;

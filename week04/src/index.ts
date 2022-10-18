@@ -1,14 +1,10 @@
-import { ITodo, Todo } from './type';
+import { Todo } from './type';
 const dayjs = require('dayjs');
 const uuid = require('uuid');
 const input = document.getElementById('input') as HTMLInputElement;
-const container = document.getElementById('container') as HTMLInputElement;
+const container = document.getElementById('container');
 
-let todoListArray: ITodo [] = [];
-
-function SetLocalStorage () {
-    window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
-}
+let todoListArray: Todo [] = [];
 
 function keydownHandler (e: any) {
     if (e.key === 'Enter') {
@@ -31,7 +27,7 @@ function keydownHandler (e: any) {
                 })
                 // console.log('ietm:  ', todoItem);
                 todoListArray.push(todoItem);
-                SetLocalStorage();
+                window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
                 input.value = '';
                 createTodoDom(todoItem);
             }
@@ -47,8 +43,7 @@ function LoadTaskDom () {
 }
 
 
-function createTodoDom (e: ITodo) {
-
+function createTodoDom (e: Todo) {
     let todoItemDom = document.createElement('div');
     if (e.finished === false) {
         todoItemDom.className = 'todo-item';
@@ -58,73 +53,78 @@ function createTodoDom (e: ITodo) {
 
     let checkboxIcon = document.createElement('i');
     checkboxIcon.className = 'iconfont icon-checkbox';
-    checkboxIcon.addEventListener('click', changeHandler);
+    checkboxIcon.addEventListener('click', () => changeHandler(e));
 
-    let text = document.createElement('span');
+    let text = document.createElement('input');
     text.className = 'todo-title';
-    text.innerText = e.content;
+    text.value = e.content;
+    text.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+            // change time display
+            let tempTime = dayjs().format('MM-DD HH:mm:ss');
+            (e.ele.childNodes[2] as HTMLElement).innerText = tempTime;
+
+            // get index in array, modified array and reset storage
+            let modifiedIndex = todoListArray.indexOf(e);
+            todoListArray[modifiedIndex].mtime = tempTime;
+            todoListArray[modifiedIndex].content = (e.ele.childNodes[1] as HTMLInputElement).value;
+            window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+        }
+    });
+
+    let time = document.createElement('div');
+    time.className = 'modified-time';
+    time.innerText = e.mtime.toString();
 
     let deleteIcon = document.createElement('i');
     deleteIcon.className = 'iconfont icon-delete';
-    deleteIcon.addEventListener('click', deleteHandler);
+    deleteIcon.addEventListener('click', () => deleteHandler(e));
 
     todoItemDom.appendChild(checkboxIcon);
     todoItemDom.appendChild(text);
+    todoItemDom.appendChild(time);
     todoItemDom.appendChild(deleteIcon);
 
+    e.ele = todoItemDom;
     container.appendChild(todoItemDom);
 }
 
 
-function deleteHandler (e: any) {
-    let parentEle = e.target.parentElement;
-    let previousEle = e.target.previousElementSibling;
-    let deleteNode = todoListArray.find(ele => ele?.content === previousEle.innerText) as ITodo;
-
-    let deleteIndex = todoListArray.indexOf(deleteNode);
-    todoListArray.splice(deleteIndex, 1);
-    SetLocalStorage();
-    parentEle.remove();
+function timeFormat (e: number) {
+    
 }
 
 
-function changeHandler (e: any) {
-    let parentEle = e.target.parentElement;
-    let nextEle = e.target.nextElementSibling;
+function deleteHandler (e: Todo) {
+    let deleteIndex = todoListArray.indexOf(e);
+    todoListArray.splice(deleteIndex, 1);
+    window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+    e.ele.remove();
+}
 
-    let finishNode = todoListArray.find(ele => ele?.content === nextEle.innerText) as ITodo;
 
-    let finishIndex = todoListArray.indexOf(finishNode);
-
+function changeHandler (e: Todo) {
+    let finishIndex = todoListArray.indexOf(e);
     if (todoListArray[finishIndex].finished === false) {
-        parentEle.className = 'todo-item todo-finished';
+        e.ele.className = 'todo-item todo-finished';
         todoListArray[finishIndex].finished = true;
     } else {
-        parentEle.className = 'todo-item';
+        e.ele.className = 'todo-item';
         todoListArray[finishIndex].finished = false;
     }
-    SetLocalStorage();
+    window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
 }
 
 
-function updataTask (): any {
+function windowRefresh (): any {
     if (window.localStorage.getItem('todoListArray') === null) {
         let arrayTemp = new Array();
         window.localStorage.setItem('todoListArray', JSON.stringify(arrayTemp));
     }
 
     todoListArray = JSON.parse(window.localStorage.getItem('todoListArray') as string);
-
     LoadTaskDom();
-
     input.addEventListener('keydown', keydownHandler);
-
-    let checkIcon = document.getElementsByClassName('iconfont icon-checkbox');
-    let deleIcon = document.getElementsByClassName('iconfont icon-delete');
-    for(let i = 0; i < checkIcon.length; i++) {
-        checkIcon[i].addEventListener('click', changeHandler);
-        deleIcon[i].addEventListener('click', deleteHandler);
-    }
 }
 
-window.onload = updataTask();
+window.onload = windowRefresh();

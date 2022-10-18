@@ -12,9 +12,9 @@ export class Todo implements ITodo {
   finished: boolean;
   ctime: number;
   mtime: number;
-  ele: HTMLElement;
+  ele:  HTMLElement;
 
-  constructor(obj: ITodo) {
+  constructor (obj: ITodo) {
     this.id = obj.id;
     this.content = obj.content;
     this.finished = obj.finished;
