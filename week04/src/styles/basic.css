@@ -65,9 +65,6 @@ header {
     font-size: 17px;
     line-height: 1.5em;
 }
-.icon-checkbox:hover {
-    color: #4f89ff;
-}
 .icon-delete:hover {
     color: red;
 }

@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 module.exports = {
+  mode: 'production',
   // 输入
   entry: ["./src/index.ts", "./src/styles/basic.css", "./src/styles/iconfont.css"],
   // 输出
@@ -18,16 +19,19 @@ module.exports = {
   },
   module: {
     rules: [
-      // 处理图片引入
-      {
-        test: /\.svg/,
-        type: "asset/resource",
-      },
       // 处理css
       {
         test: /.css$/,
-        // 数组从后往前执行，先执行css-loader
+        // 数组从后往前执行，先执行css-loader，所以不能颠倒
         use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      // 处理图片引入
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'styles/[name].[hash:6][ext]'
+        }
       },
       // 编译ts，会借助ts-config
       {
