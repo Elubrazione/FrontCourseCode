@@ -2,16 +2,16 @@ export interface ITodo {
   id: string;
   content: string;
   finished: boolean;
-  ctime: number;
-  mtime: number;
+  ctime: string;
+  mtime: string;
 }
 
 export class Todo implements ITodo {
   id: string;
   content: string;
   finished: boolean;
-  ctime: number;
-  mtime: number;
+  ctime: string;
+  mtime: string;
   ele:  HTMLElement;
 
   constructor (obj: ITodo) {

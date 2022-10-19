@@ -2,36 +2,46 @@ import { Todo } from './type';
 const dayjs = require('dayjs');
 const uuid = require('uuid');
 const input = document.getElementById('input') as HTMLInputElement;
-const container = document.getElementById('container');
+const container = document.getElementById('container') as HTMLElement;
 
 let todoListArray: Todo [] = [];
 
+
+function isBlankOrRepeat (e: HTMLInputElement) {
+    e.value = e.value.replace(/(^\s*)|(\s*$)/g, '');
+    if (e.value.length === 0) {
+        Remind('请输入一个内容不为空的任务!');
+        return false;
+    } else {
+        let judge = todoListArray.find(ele => ele?.content === e.value);
+        if (judge != undefined) {
+            Remind('任务重复! 您已添加过此任务!');
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+
 function keydownHandler (e: any) {
     if (e.key === 'Enter') {
-        input.value = input.value.replace(/(^\s*)|(\s*$)/g, "");
-        if (input.value.length === 0) {
-            alert('Input could not be NULL!')
-            return;
-        } else {
-            let judge = todoListArray.find(ele => ele?.content === input.value);
-            if (judge != undefined) {
-                alert('Repetitious task! You have already added this task!');
-                return;
-            } else {
-                let todoItem = new Todo({
-                    id: uuid.v4(),
-                    content: input.value,
-                    finished: false,
-                    ctime: dayjs().format('MM-DD HH:mm:ss'),
-                    mtime: dayjs().format('MM-DD HH:mm:ss'),
-                })
-                // console.log('ietm:  ', todoItem);
-                todoListArray.push(todoItem);
-                window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
-                input.value = '';
-                createTodoDom(todoItem);
-            }
+        // No repeatitious and blank
+        if (isBlankOrRepeat(input)) {
+            let todoItem = new Todo({
+                id: uuid.v4(),
+                content: input.value,
+                finished: false,
+                ctime: dayjs().format('MM月DD日 HH:mm:ss').toString(),
+                mtime: dayjs().format('MM月DD日 HH:mm:ss').toString(),
+            })
+            todoListArray.push(todoItem);
+            window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+            input.value = '';
+            createTodoDom(todoItem);
         }
+
+        return;
     }
 }
 
@@ -59,22 +69,26 @@ function createTodoDom (e: Todo) {
     text.className = 'todo-title';
     text.value = e.content;
     text.addEventListener('keydown', event => {
-        if (event.key === 'Enter') {
-            // change time display
-            let tempTime = dayjs().format('MM-DD HH:mm:ss');
-            (e.ele.childNodes[2] as HTMLElement).innerText = tempTime;
 
-            // get index in array, modified array and reset storage
-            let modifiedIndex = todoListArray.indexOf(e);
-            todoListArray[modifiedIndex].mtime = tempTime;
-            todoListArray[modifiedIndex].content = (e.ele.childNodes[1] as HTMLInputElement).value;
-            window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+        if (event.key === 'Enter') {
+            let currentInput = e.ele.childNodes[1] as HTMLInputElement;
+            if (isBlankOrRepeat(currentInput)) {
+                // change time display
+                let tempTime = dayjs().format('MM月DD日 HH:mm:ss').toString();
+                (e.ele.childNodes[2] as HTMLElement).innerText = tempTime;
+
+                // get index in array, modified array and reset storage
+                let modifiedIndex = todoListArray.indexOf(e);
+                todoListArray[modifiedIndex].mtime = tempTime;
+                todoListArray[modifiedIndex].content = currentInput.value;
+                window.localStorage.setItem('todoListArray', JSON.stringify(todoListArray));
+            }
         }
     });
 
     let time = document.createElement('div');
     time.className = 'modified-time';
-    time.innerText = e.mtime.toString();
+    time.innerText = e.mtime;
 
     let deleteIcon = document.createElement('i');
     deleteIcon.className = 'iconfont icon-delete';
@@ -87,11 +101,6 @@ function createTodoDom (e: Todo) {
 
     e.ele = todoItemDom;
     container.appendChild(todoItemDom);
-}
-
-
-function timeFormat (e: number) {
-    
 }
 
 
@@ -121,10 +130,31 @@ function windowRefresh (): any {
         let arrayTemp = new Array();
         window.localStorage.setItem('todoListArray', JSON.stringify(arrayTemp));
     }
-
     todoListArray = JSON.parse(window.localStorage.getItem('todoListArray') as string);
+
     LoadTaskDom();
+
     input.addEventListener('keydown', keydownHandler);
+}
+
+
+function Remind (e: string) {
+    let message = document.createElement('div')
+    message.id = 'msg';
+    message.className = 'message'
+    message.style.top = 140 + 'px';
+
+    document.getElementById('header').appendChild(message);
+
+    let msgContent = document.createElement('p');
+    msgContent.className = 'msgtext';
+    msgContent.innerText = e;
+
+    message.appendChild(msgContent);
+
+    window.setTimeout(() => {
+        document.getElementById('msg').remove();
+    }, 1000);
 }
 
 window.onload = windowRefresh();
