@@ -1,11 +1,13 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom/client"
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Header from './Components/Header/Header'
+import TodoList from './Components/TodoList/TodoList';
+import './Styles/index.css';
 
-
-function Test() {
-  return <div>test</div>
-}
-
-ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
-  <Test />
+const app = document.getElementById('app') as HTMLElement;
+ReactDOM.createRoot(app).render(
+  <>
+      <Header/>
+      <TodoList/>
+  </>
 )

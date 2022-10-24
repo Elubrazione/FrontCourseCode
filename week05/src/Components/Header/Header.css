@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.title {
+    color: #4f89ff;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgb(0 0 0 / 50%);
+}
