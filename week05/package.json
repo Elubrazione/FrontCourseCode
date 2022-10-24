@@ -3,11 +3,8 @@
   "description": "Web of ToDo List",
   "name": "elubraziones-todo-list",
   "scripts": {
-    "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "dev": "webpack-dev-server -c ./scripts/webpack.dev.js",
+    "build": "webpack-cli -c ./scripts/webpack.config.js"
   },
   "devDependencies": {
     "@types/react": "^18.0.21",
@@ -33,7 +30,9 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "dayjs": "^1.11.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.0"
   }
 }
