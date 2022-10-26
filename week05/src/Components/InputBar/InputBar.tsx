@@ -1,15 +1,18 @@
-import { Todo } from '../../Types/Class'
-import React, { useState } from 'react';
-import './InputBar.css'
+import { Todo } from '../../Utils/Props';
+import React from 'react';
+import './InputBar.css';
 
 const dayjs = require('dayjs');
 const uuid = require('uuid');
 
-export default function TodoList () {
+interface IProps {
+    todos: Todo[],
+    todosUpdate: Function,
+}
 
-    const [todoList, setTodoList] = useState([]);
+export default function TodoList (props: IProps) {
 
-    function keydownHandler (e: any) {
+    const keydownHandler = (e: any) => {
         if (e.key === 'Enter'){
             // console.log(e.key, e.target.value)
             const todoItem = new Todo({
@@ -19,15 +22,17 @@ export default function TodoList () {
                 ctime: dayjs(),
                 mtime: dayjs(),
             });
-            const tempList = [...todoList, todoItem];
+            const tempList = [...props.todos, todoItem];
             window.localStorage.setItem('todoList', JSON.stringify(tempList));
-            setTodoList(tempList);
+
+            props.todosUpdate(todoItem);
             e.target.value = '';
         }
     }
     return (
-        <input id='input' type='text' className='input' placeholder='What needs to be done?' onKeyDown={
-            e => keydownHandler(e)
-        }/>
+        <input id='input' type='text' className='input'
+                placeholder='What needs to be done?'
+                onKeyDown={e => keydownHandler(e)}
+        />
     );
 }

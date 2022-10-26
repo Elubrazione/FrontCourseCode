@@ -1,5 +1,10 @@
-import { ITodo } from './Props'
-
+export interface ITodo {
+  id: string;
+  content: string;
+  finished: boolean;
+  ctime: number;
+  mtime: number;
+}
 export class Todo implements ITodo {
   id: string;
   content: string;

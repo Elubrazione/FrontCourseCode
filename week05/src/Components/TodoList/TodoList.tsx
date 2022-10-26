@@ -1,21 +1,21 @@
 import React from 'react';
-import { Todo } from '../../Types/Class'
 import TodoItem from '../TodoItem/TodoItem';
+import { Todo } from '../../Utils/props'
 
-export default function TodoList () {
-    if (window.localStorage.getItem('todoList') === null) {
-        const arrayTemp: Todo[] = [];
-        window.localStorage.setItem('todoList', JSON.stringify(arrayTemp));
-    }
-    const todoList = JSON.parse(window.localStorage.getItem('todoList') as string) as Array<Todo>;
+interface IProps {
+  todos: Todo[],
+  todosUpdate: Function
+}
+
+export default function TodoList (props: IProps) {
     return (
         <section>
-            {todoList.map(item =>
+            {props.todos.map(item =>
                 <TodoItem
-                    key = {item.id}
-                    mtime = {item.mtime}
-                    content = {item.content}
-                    finished = {item.finished}/>)}
+                    key={item.id}
+                    todo={item}
+                />)
+            }
         </section>
     )
 }

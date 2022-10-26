@@ -16,5 +16,8 @@
 - 
 
 ## 遇到的问题
-**1. `useState` 异步更新，但localStorage依赖于useState更新的内容**
+**1. 一直提示：Invalid Hook Call Warning**
+  - 不能在循环、条件语句里使用 `Hook`，而且只能在函数组件里使用。所以将所有组件打包成一个 `App` 组件，再在 `index.tsx` 里 `render` 到DOM节点里。
+
+**2. `useState` 异步更新，但localStorage依赖于useState更新的内容**
   - 先临时将值更新到一个 `Array` 变量，localStorage这个变量。

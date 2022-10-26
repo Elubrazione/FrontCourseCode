@@ -1,31 +1,36 @@
 import React from 'react';
 import './TodoItem.css'
-import '../../Styles/iconfont.css'
+import '../../Styles/iconfont.css';
+import { Todo } from '../../Utils/props'
+const dayjs = require('dayjs');
 
-import { todoProps } from '../../Types/Props';
+interface IProps {
+    todo: Todo,
+}
 
-export default function TodoItem (props: todoProps) {
-    function changeHandler (e: any) {
-
+export default function TodoItem (props: IProps) {
+    const changeHandler = (e: any) => {
+        console.log(e);
     }
-    function finishHandler (e: any) {
-
+    const finishHandler = (e: any) => {
+        console.log(e);
     }
-    function deleteHandler (e: any) {
-
+    const deleteHandler = (e: any) => {
+        console.log(e);
     }
-    console.log(props)
+    // console.log(props)
+
     return (
-        <div className='todo-item'>
+        <div className={props.todo.finished?'todo-item todo-finished':'todo-item'}>
             <i className='iconfont icon-checkbox'
                 onClick={e => finishHandler(e.target)}>
             </i>
             <input className='todo-title' type='text'
-                    onClick={e => changeHandler(e.target)}
-                    value={props.content}>
+                    onKeyDown={e => changeHandler(e)}
+                    value={props.todo.content}>
             </input>
             <div className='modified-time'>
-                {props.mtime}
+                {dayjs(props.todo.mtime).format('MM月DD日 HH:mm:ss')}
             </div>
             <i className='iconfont icon-delete'
                 onClick={e => deleteHandler(e.target)}>
