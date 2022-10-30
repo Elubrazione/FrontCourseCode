@@ -14,19 +14,25 @@ export default function TodoList (props: IProps) {
 
     const keydownHandler = (e: any) => {
         if (e.key === 'Enter'){
-            // console.log(e.key, e.target.value)
-            const todoItem = new Todo({
-                id: uuid.v4(),
-                content: e.target.value,
-                finished: false,
-                ctime: dayjs(),
-                mtime: dayjs(),
-            });
-            const tempList = [...props.todos, todoItem];
-            window.localStorage.setItem('todoList', JSON.stringify(tempList));
+            e.target.value = e.target.value.replace(/(^\s*)|(\s*$)/g, '');
+            const judge = props.todos.find(ele => ele?.content === e.target.value);
+            if (judge === undefined) {
+                const todoItem = new Todo({
+                    id: uuid.v4(),
+                    content: e.target.value,
+                    finished: false,
+                    ctime: dayjs(),
+                    mtime: dayjs(),
+                });
 
-            props.todosUpdate(todoItem);
-            e.target.value = '';
+                const tempList = [...props.todos, todoItem];
+                window.localStorage.setItem('todoList', JSON.stringify(tempList));
+
+                props.todosUpdate(tempList);
+                e.target.value = '';
+            } else {
+                alert('重复！');
+            }
         }
     }
     return (

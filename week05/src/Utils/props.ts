@@ -11,7 +11,6 @@ export class Todo implements ITodo {
   finished: boolean;
   ctime: number;
   mtime: number;
-  ele:  any;
 
   constructor (obj: ITodo) {
     this.id = obj.id;
@@ -19,6 +18,5 @@ export class Todo implements ITodo {
     this.finished = obj.finished;
     this.ctime  = obj.ctime;
     this.mtime = obj.mtime;
-    this.ele = null;
   }
 }

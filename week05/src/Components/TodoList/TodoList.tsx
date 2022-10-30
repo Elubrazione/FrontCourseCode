@@ -8,12 +8,15 @@ interface IProps {
 }
 
 export default function TodoList (props: IProps) {
+
     return (
         <section>
             {props.todos.map(item =>
                 <TodoItem
                     key={item.id}
                     todo={item}
+                    todosUpdate={props.todosUpdate}
+                    todos={props.todos}
                 />)
             }
         </section>
