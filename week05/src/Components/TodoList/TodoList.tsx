@@ -3,8 +3,9 @@ import TodoItem from '../TodoItem/TodoItem';
 import { Todo } from '../../Utils/props'
 
 interface IProps {
-  todos: Todo[],
-  todosUpdate: Function
+    todos: Todo[],
+    todosUpdate: Function,
+    alertUpdate: Function,
 }
 
 export default function TodoList (props: IProps) {
@@ -17,6 +18,7 @@ export default function TodoList (props: IProps) {
                     todo={item}
                     todosUpdate={props.todosUpdate}
                     todos={props.todos}
+                    alertUpdate={props.alertUpdate}
                 />)
             }
         </section>

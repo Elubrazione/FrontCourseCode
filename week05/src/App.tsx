@@ -3,27 +3,40 @@ import { Todo } from './Utils/props'
 import Header from './Components/Header/Header'
 import InputBar from './Components/InputBar/InputBar';
 import TodoList from './Components/TodoList/TodoList';
+import AlertBar from './Components/AlertBar/AlertBar'
 import { createTodos, sortTodos } from './Utils/tools'
 import './Styles/index.css';
 
 export default function App () {
-  const [todoList, setTodoList] = useState<Todo[]>(createTodos());
+
+  const [ todoList, setTodoList ] = useState<Todo[]>(createTodos());
+  const [ alertValue, setAlertValue ] = useState<string>('');
+  const [ status, setStatus ] = useState<boolean>(false);
+
   todoList.sort(sortTodos);
 
-  // 传入一个Todo变量，在这里更新TodoList。但是要怎么区分删除、添加、修改。
-  // 传入修改后的List，问题在于TodoItem里获取不到List完整信息。
-  // 其实可以传TodoList给TodoItem，但是不够优雅
-  // 妥协了，不优雅就不优雅吧
   const todosUpdate = (e: Todo[]) => {
     setTodoList([...e]);
     todoList.sort(sortTodos);
   }
 
+  const alertUpdate = (e: string) => {
+    if (e !== '') {
+      setAlertValue(e);
+      setStatus(true);
+    } else {
+      setTimeout(() => {
+        setStatus(false);
+      }, 1000)
+    }
+  }
+
   return (
     <>
+      <AlertBar content={alertValue} status={status} alertStatus={alertUpdate}/>
       <Header/>
-      <InputBar todos={todoList} todosUpdate={todosUpdate}/>
-      <TodoList todos={todoList} todosUpdate={todosUpdate}/>
+      <InputBar todos={todoList} todosUpdate={todosUpdate} alertUpdate={alertUpdate}/>
+      <TodoList todos={todoList} todosUpdate={todosUpdate} alertUpdate={alertUpdate}/>
     </>
   )
 }

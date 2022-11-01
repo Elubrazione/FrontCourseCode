@@ -2,11 +2,10 @@
     text-align: center;
     border: 1px solid #ffffff;
     background-color: #787878;
-    position: absolute;
+    position: fixed;
     border-radius: 10px !important;
     font-size: 1px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     z-index: 200;
     width: 200px;
     height: 50px;
@@ -14,6 +13,8 @@
     align-items: center;
     justify-content: center;
     top: 140px;
+    left: 0;
+    right: 0;
 }
 
 .msgtext {
