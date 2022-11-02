@@ -21,3 +21,17 @@ export function sortTodos (e1: Todo, e2: Todo) {
         return prev - next;
     }
 }
+
+export function isBlankOrRepeat (todos: Todo[], ele: HTMLInputElement) {
+    ele.value = ele.value.replace(/(^\s*)|(\s*$)/g, '');
+    if (ele.value.length === 0) {
+        return '请输入一个内容不为空的任务!';
+    } else {
+        const judge = todos.find(e => e?.content === ele.value);
+        if (judge !== undefined) {
+            return '任务重复! 您已添加过此任务!';
+        } else {
+            return true;
+        }
+    }
+}

@@ -1,18 +1,18 @@
 import React from 'react';
+import { IAlert } from '../../Utils/props';
 import './AlertBar.css'
 
 interface IProps {
-    content: string,
-    status: boolean,
-    alertStatus: Function
+    alertValue: IAlert
+    alertUpdate: Function
 }
 
 export default function AlertBar (props: IProps) {
-    if (props.status) {
-        props.alertStatus('');
+    if (props.alertValue.status) {
+        props.alertUpdate('');
         return (
             <div className='message'>
-                <p className='msgtext'>{props.content}</p>
+                <p className='msgtext'>{props.alertValue.content}</p>
             </div>
         );
     } else {

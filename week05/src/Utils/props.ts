@@ -20,3 +20,8 @@ export class Todo implements ITodo {
     this.mtime = obj.mtime;
   }
 }
+
+export interface IAlert {
+  content?: string;
+  status: boolean;
+}

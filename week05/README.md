@@ -6,6 +6,7 @@
   - [要求清单](#要求清单)
   - [完成思路](#完成思路)
   - [遇到的问题](#遇到的问题)
+  - [优化事项](#优化事项)
   - [相关笔记](#相关笔记)
 
 ## 要求清单
@@ -20,7 +21,7 @@
 - 完成 `Header`、`Input` 组件以及`keydown`事件；
 - 完成 `TodoList` 和 `TodoItem` 组件，绑定 `onChange`、`delete`、`finish` 事件；
 - 完成对清单列表的排序，未完成的在前且按时间倒序排序；
-- 优化：`AlertBar` 组件。
+- 代码优化事项。
 
 ## 遇到的问题
 **1. 一直提示：Invalid Hook Call Warning**
@@ -38,6 +39,11 @@
 **5. `AlertBar` 实现问题：（1）如何挂载，哪里挂载；（2）挂载后如何移除**
   - 直接挂载在 `App` 组件当中，设置一个 `state` 布尔变量，在 `AlerBar` 组件里根据传入的state值来决定返回弹窗还是NULL；
   - 通过一个 `alertUpdate` 函数，在弹窗组件内部调用，设置1s的定时器后将 `status` 的值改为 `false`，则弹窗组件就会自动更新返回NULL，从而移除消失。
+
+## 优化事项
+- AlertBar传值优化，将传入的 `status` 和 `content`（提示语内容）合并成一个`INTERFACE` 结构。解决了每次要渲染两次的问题。
+- 将输入判重和判空功能抽象成一个函数，避免了 `InputBar` 和 `TodoItem` 中的代码重复。
+- 由于不存在todos列表和上一次的值相同的情况，因此不用添加相关Hooks来判断渲染（如果是我考虑不周麻烦联系我orz）
 
 ## 相关笔记
 Hooks使用和项目创建：*https://elubrazione.github.io/2022/10/22/React/*

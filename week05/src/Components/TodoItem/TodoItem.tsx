@@ -2,6 +2,7 @@ import React from 'react';
 import './TodoItem.css'
 import '../../Styles/iconfont.css';
 import { Todo } from '../../Utils/props'
+import { isBlankOrRepeat } from '../../Utils/tools';
 
 const dayjs = require('dayjs');
 
@@ -14,19 +15,19 @@ interface IProps {
 
 export default function TodoItem (props: IProps) {
 
-    const changeHandler = (e: HTMLInputElement) => {
-        e.value = e.value.replace(/(^\s*)|(\s*$)/g, '');
-        if (e.value.length !== 0) {
-            const judge = props.todos.find(ele => ele?.content === e.value);
-            if (judge === undefined) {
+    const changeHandler = (e: any) => {
+        console.log(e.key)
+        if (e.key === 'Enter') {
+            const ret = isBlankOrRepeat(props.todos, e.target);
+            if (ret === true) {
                 props.todo.mtime = dayjs();
-                props.todo.content = e.value;
+                props.todo.content = e.target.value;
                 const index = props.todos.indexOf(props.todo);
                 props.todos[index] = props.todo;
                 props.todosUpdate(props.todos);
                 window.localStorage.setItem('todoList', JSON.stringify(props.todos));
             } else {
-                props.alertUpdate('任务重复! 您已添加过此任务!');
+                props.alertUpdate(ret as string);
             }
         }
     }
@@ -53,7 +54,7 @@ export default function TodoItem (props: IProps) {
                 onClick={e => finishHandler(e.target)}>
             </i>
             <input className='todo-title' type='text'
-                    onChange={e => changeHandler(e.target)}
+                    onKeyDown={e => changeHandler(e)}
                     defaultValue={props.todo.content}>
             </input>
             <div className='modified-time'>
@@ -63,5 +64,5 @@ export default function TodoItem (props: IProps) {
                 onClick={e => deleteHandler()}>
             </i>
         </div>
-    )
+    );
 }

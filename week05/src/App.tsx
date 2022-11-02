@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Todo } from './Utils/props'
+import { Todo, IAlert } from './Utils/props'
 import Header from './Components/Header/Header'
 import InputBar from './Components/InputBar/InputBar';
 import TodoList from './Components/TodoList/TodoList';
@@ -10,8 +10,7 @@ import './Styles/index.css';
 export default function App () {
 
   const [ todoList, setTodoList ] = useState<Todo[]>(createTodos());
-  const [ alertValue, setAlertValue ] = useState<string>('');
-  const [ status, setStatus ] = useState<boolean>(false);
+  const [ alertValue, setAlertValue ] = useState<IAlert>({status: false});
 
   todoList.sort(sortTodos);
 
@@ -22,21 +21,20 @@ export default function App () {
 
   const alertUpdate = (e: string) => {
     if (e !== '') {
-      setAlertValue(e);
-      setStatus(true);
+      setAlertValue({status: true, content: e});
     } else {
       setTimeout(() => {
-        setStatus(false);
-      }, 1000)
+        setAlertValue({status: false});
+      }, 1000);
     }
   }
 
   return (
     <>
-      <AlertBar content={alertValue} status={status} alertStatus={alertUpdate}/>
+      <AlertBar alertValue={alertValue} alertUpdate={alertUpdate}/>
       <Header/>
       <InputBar todos={todoList} todosUpdate={todosUpdate} alertUpdate={alertUpdate}/>
       <TodoList todos={todoList} todosUpdate={todosUpdate} alertUpdate={alertUpdate}/>
     </>
-  )
+  );
 }
