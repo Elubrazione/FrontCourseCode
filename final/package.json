@@ -1,5 +1,5 @@
 {
-  "name": "fe",
+  "name": "manage-system",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.5.1",
