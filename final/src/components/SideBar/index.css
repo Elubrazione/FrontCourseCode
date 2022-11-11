@@ -1,0 +1,18 @@
+* {
+    color: white;
+}
+.ant-menu {
+    background-color: rgb(3, 21, 41);
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: rgb(53, 114, 255);
+}
+
+.ant-menu-inline .ant-menu-item::after {
+    border-right: 0px;
+}
+
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+    width: calc(100% + 0px);
+}

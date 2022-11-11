@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound";
 const router = createHashRouter ([
     {   // 第一个界面，登录界面
         path: "/",
-        element: <Login />,
+        element: <Main />,
         errorElement: <NotFound />,
         children: [
             {

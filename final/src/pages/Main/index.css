@@ -1,0 +1,9 @@
+.site-layout-background {
+    background: #fff;
+}
+
+.ant-layout {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+}

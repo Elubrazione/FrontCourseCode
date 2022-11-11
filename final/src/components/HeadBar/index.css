@@ -1,0 +1,12 @@
+* {
+    color: white;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    font-size: large;
+}
