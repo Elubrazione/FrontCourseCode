@@ -7,3 +7,8 @@
     flex: auto;
     flex-direction: row;
 }
+
+.info-main {
+    display: flex;
+    flex-direction: column;
+}

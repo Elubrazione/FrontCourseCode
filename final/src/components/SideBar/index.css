@@ -1,12 +1,10 @@
-* {
-    color: white;
-}
 .ant-menu {
     background-color: rgb(3, 21, 41);
 }
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: rgb(53, 114, 255);
+    color: white;
 }
 
 .ant-menu-inline .ant-menu-item::after {

@@ -10,7 +10,7 @@ const HeadBar: FC = () => {
     return (
         <Header className="header">
             <span className="header-text">人员管理系统</span>
-            <div>
+            <div className="user">
                 <span className="header-username">admin</span>
                 <Avatar size="small" className="header-avatar" icon={<UserOutlined />} />
             </div>

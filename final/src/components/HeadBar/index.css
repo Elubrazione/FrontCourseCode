@@ -1,7 +1,3 @@
-* {
-    color: white;
-}
-
 .header {
     display: flex;
     align-items: center;
@@ -9,4 +5,15 @@
 
 .header-text {
     font-size: large;
+    color: white;
+}
+
+.user {
+    position: fixed;
+    right: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: white;
 }
