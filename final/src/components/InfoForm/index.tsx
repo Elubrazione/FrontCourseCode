@@ -1,55 +1,60 @@
 import React, { FC } from "react";
-import { Space, Table, Tag } from "antd";
+import { Avatar, Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import "./index.css";
+import { formDataType } from "../../apis/dataTypes";
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<formDataType> = [
+//   {
+//     title: "头像",
+//     dataIndex: "avatar",
+//     key: "avatar",
+//     render: avatar => <Avatar src={require(avatar)}/>,
+//   },
+
   {
-    title: "Name",
+    title: "姓名",
     dataIndex: "name",
     key: "name",
-    render: text => <a>{text}</a>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "专业",
+    dataIndex: "major",
+    key: "major",
   },
   {
-    title: "Address",
-    dataIndex: "address",
+    title: "年级",
+    dataIndex: "year",
+    key: "year",
+  },
+  {
+    title: "性别",
+    dataIndex: "sex",
+    key: "sex",
+    render: sex => {
+        let color = "red";
+        if (sex === "男") {
+            color = "blue";
+        }
+        return (
+            <Tag color={color} key={sex}>
+            {sex}
+            </Tag>
+        );}
+  },
+  {
+    title: "电话",
+    dataIndex: "phone",
+    key: "phone",
+  },
+  {
+    title: "邮箱",
+    dataIndex: "mail",
     key: "address",
   },
   {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-    render: (_, { tags }) => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: "Action",
+    title: "操作",
     key: "action",
     render: (_, record) => (
       <Space size="middle">
@@ -60,27 +65,17 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [
+const data: formDataType[] = [
   {
     key: "1",
+    // avatar:
     name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
+    major: "CS",
+    year: "2022",
+    sex: "男",
+    phone: 111,
+    mail: "google"
+
   },
 ];
 
