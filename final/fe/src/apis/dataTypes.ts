@@ -1,6 +1,6 @@
 export interface formDataType {
     key: string;
-    // avatar: string;
+    avatar: string;
     name: string;
     major: string;
     year: string;

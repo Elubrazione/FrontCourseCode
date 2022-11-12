@@ -1,17 +1,34 @@
 import React, { FC } from "react";
-import { Avatar, Space, Table, Tag } from "antd";
+import { faker } from "@faker-js/faker";
+import type { MenuProps } from "antd";
+import { SettingOutlined } from "@ant-design/icons";
+import { Avatar, Dropdown, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import "./index.css";
 import { formDataType } from "../../apis/dataTypes";
+import "./index.css";
 
+const items: MenuProps["items"] = [
+  {
+    label: "查看",
+    key: "0",
+  },
+  {
+    label:"编辑",
+    key: "1",
+  },
+  {
+    label: "删除",
+    key: "2",
+  },
+];
 
 const columns: ColumnsType<formDataType> = [
-//   {
-//     title: "头像",
-//     dataIndex: "avatar",
-//     key: "avatar",
-//     render: avatar => <Avatar src={require(avatar)}/>,
-//   },
+  {
+    title: "头像",
+    dataIndex: "avatar",
+    key: "avatar",
+    render: avatar => <Avatar shape="square" src={avatar} size={58} />,
+  },
 
   {
     title: "姓名",
@@ -57,10 +74,11 @@ const columns: ColumnsType<formDataType> = [
     title: "操作",
     key: "action",
     render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
+        <Dropdown menu={{ items }}>
+          <div className="setting-border">
+            <SettingOutlined />
+          </div>
+        </Dropdown>
     ),
   },
 ];
@@ -68,14 +86,53 @@ const columns: ColumnsType<formDataType> = [
 const data: formDataType[] = [
   {
     key: "1",
-    // avatar:
+    avatar: faker.image.abstract(),
     name: "John Brown",
     major: "CS",
     year: "2022",
     sex: "男",
     phone: 111,
     mail: "google"
-
+  },
+  {
+    key: "2",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    sex: "男",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "3",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    sex: "女",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "4",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    sex: "男",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "5",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    sex: "女",
+    phone: 111,
+    mail: "google"
   },
 ];
 

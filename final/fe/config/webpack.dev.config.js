@@ -8,7 +8,10 @@ module.exports = merge(common, {
     static: {
       directory: path.join(__dirname, "src"),
     },
-    port: 3001,
+    proxy: {
+      "/api": "http://localhost:3001"
+    },
+    port: 3000,
     compress: true,
     allowedHosts: "127.0.0.1",
     historyApiFallback: true,
