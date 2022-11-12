@@ -4,9 +4,8 @@ import { Provider } from "react-redux";
 import store from "./apis/redux/store";
 import App from "./App";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const app = document.getElementById("root") as HTMLElement;
+const root = ReactDOM.createRoot(app);
 
 root.render(
   <React.StrictMode>
