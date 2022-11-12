@@ -1,9 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import formDataType from "../dataTypes";
+
+const stuInfos: formDataType[] = [];
 
 export const stuSlice = createSlice({
     name: "stu",
-    initialState: [],
+    initialState: stuInfos,
     reducers: {
         addStu: state => {
             state.unshift();
