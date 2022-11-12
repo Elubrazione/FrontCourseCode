@@ -8,3 +8,5 @@ export interface formDataType {
     phone: number;
     mail: string;
 }
+
+export default formDataType;
