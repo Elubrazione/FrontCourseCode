@@ -1,9 +1,9 @@
 import React from "react";
 
 const UserInfo = () => {
-    return (
-        <></>
-    );
+	return (
+		<></>
+	);
 };
 
 export default UserInfo;

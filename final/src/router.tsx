@@ -5,18 +5,18 @@ import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
 
 const router = createHashRouter ([
-    {   // 第一个界面，登录界面
-        path: "/",
-        element: <Main />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                // 登录成功，跳转到主页面
-                path: "",
-                element: <Main />
-            }
-        ]
-    }
+	{   // 第一个界面，登录界面
+		path: "/",
+		element: <Main />,
+		errorElement: <NotFound />,
+		children: [
+			{
+				// 登录成功，跳转到主页面
+				path: "",
+				element: <Main />
+			}
+		]
+	}
 ]);
 
 export default router;

@@ -7,28 +7,25 @@ import "antd/dist/antd.css";
 import "./index.css";
 
 const SideBar: FC = () => {
-    const items: MenuProps["items"] = [TeamOutlined].map(
-        (icon, index) => {
-          const key = String(index + 1);
-          return {
-            key: `sub${key}`,
-            icon: React.createElement(icon),
-            label: "人员管理",
-          };
-        },
-    );
+  const items: MenuProps["items"] = [TeamOutlined].map((icon, index) => {
+    const key = String(index + 1);
+    return {
+      key: `sub${key}`,
+      icon: React.createElement(icon),
+      label: "人员管理",
+    };
+  });
 
-    return (
-        <Sider className="sider">
-            <Menu
-                mode="inline"
-                defaultSelectedKeys={["sub1"]}
-                style={{ height: "100%", borderRight: 0 }}
-                items={items}
-            />
-        </Sider>
-    );
+  return (
+    <Sider className="sider">
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={["sub1"]}
+        style={{ height: "100%", borderRight: 0 }}
+        items={items}
+      />
+    </Sider>
+  );
 };
-
 
 export default SideBar;
