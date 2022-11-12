@@ -3,13 +3,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const rootPath = process.cwd();
+const parentPath = rootPath.split("\\").slice(0, -1).join("\\");
+console.log(parentPath);
 const entry = "src/index.tsx";
 
 module.exports = {
   entry: path.resolve(rootPath, entry),
   output: {
     filename: "[name].[chunkhash:8].js",
-    path: path.resolve(rootPath, "server/dist"),
+    path: path.resolve(parentPath, "server/dist"),
     publicPath: "/",
   },
   resolve: {
