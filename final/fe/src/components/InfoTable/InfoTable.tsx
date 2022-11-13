@@ -3,8 +3,8 @@ import { faker } from "@faker-js/faker";
 import { Avatar, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
-import StuActions from "./StuActions";
-import "./index.css";
+import StuActions from "../StuActions/StuActions";
+import "./InfoTable.css";
 
 const data: formDataType[] = [
   {

@@ -1,8 +1,8 @@
 import { Dropdown, MenuProps } from "antd";
 import React, { FC } from "react";
 import { SettingOutlined } from "@ant-design/icons";
-import "./index.css";
-import ModalOut from "../../ModalOut";
+import "./StuActions.css";
+import ModalOut from "../ModalOut";
 
 interface IProps {
   submitValues: any;

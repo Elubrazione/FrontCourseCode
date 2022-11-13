@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Button, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import ModalOut from "../ModalOut";
-import "./index.css";
+import "./HeadOps.css";
 
 const DataSelect: FC = () => {
   const { Search } = Input;

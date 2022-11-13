@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Layout, Avatar, Dropdown, MenuProps } from "antd";
 import "antd/dist/antd.css";
-import "./index.css";
+import "./HeadBar.css";
 
 const { Header } = Layout;
 

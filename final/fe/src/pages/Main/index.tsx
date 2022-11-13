@@ -1,8 +1,8 @@
 import React from "react";
-import SideBar from "../../components/SideBar";
-import InfoForm from "../../components/InfoForm";
-import DataSelect from "../../components/DataSelect";
-import HeadBar from "../../components/HeadBar";
+import SideBar from "../../components/SideBar/SideBar";
+import InfoForm from "../../components/InfoTable/InfoTable";
+import DataSelect from "../../components/HeadOps/HeadOps";
+import HeadBar from "../../components/HeadBar/HeadBar";
 import "./index.css";
 import { Layout } from "antd";
 

@@ -36,7 +36,7 @@ const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues
         title={modalTitle} open={isModalOpen} onOk={handleOk}
         onCancel={handleCancel} okText="确认" cancelText="取消"
       >
-				<SubmitForm initial={!clickButton} initialValue={submitValues}/>
+				<SubmitForm initialValue={submitValues}/>
       </Modal>
     </>
   );
