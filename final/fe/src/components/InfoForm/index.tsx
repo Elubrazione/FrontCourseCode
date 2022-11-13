@@ -1,35 +1,28 @@
 import React, { FC } from "react";
 import { faker } from "@faker-js/faker";
-import type { MenuProps } from "antd";
-import { SettingOutlined } from "@ant-design/icons";
-import { Avatar, Dropdown, Table, Tag } from "antd";
+import { Avatar, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
+import StuActions from "./StuActions";
 import "./index.css";
 
-const items: MenuProps["items"] = [
-  {
-    label: "查看",
-    key: "0",
-  },
-  {
-    label:"编辑",
-    key: "1",
-  },
-  {
-    label: "删除",
-    key: "2",
-  },
-];
+// const handleMenuClick: MenuProps["onClick"] = e => {
+//   message.info("Click on menu item.");
+//   console.log("click", e);
+// };
+
+// const menuProps = {
+//   items,
+//   onClick: handleMenuClick,
+// };
 
 const columns: ColumnsType<formDataType> = [
   {
     title: "头像",
     dataIndex: "avatar",
     key: "avatar",
-    render: avatar => <Avatar shape="square" src={avatar} size={58} />,
+    render: avatar => <Avatar shape="square" src={avatar} className="info"/>,
   },
-
   {
     title: "姓名",
     dataIndex: "name",
@@ -55,9 +48,7 @@ const columns: ColumnsType<formDataType> = [
             color = "blue";
         }
         return (
-            <Tag color={color} key={sex}>
-            {sex}
-            </Tag>
+            <Tag color={color} key={sex}>{sex}</Tag>
         );}
   },
   {
@@ -73,13 +64,7 @@ const columns: ColumnsType<formDataType> = [
   {
     title: "操作",
     key: "action",
-    render: (_, record) => (
-        <Dropdown menu={{ items }}>
-          <div className="setting-border">
-            <SettingOutlined />
-          </div>
-        </Dropdown>
-    ),
+    render: () => <StuActions />,
   },
 ];
 

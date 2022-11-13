@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Button, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import ModalOut from "../ModalOut";
 import "./index.css";
 
 const DataSelect: FC = () => {
@@ -8,9 +9,12 @@ const DataSelect: FC = () => {
   const onSearch = (value: string) => console.log(value);
   return (
     <div className="selector-container">
-      <Button type="primary" icon={<PlusOutlined />}>
-        添加
-      </Button>
+      <ModalOut
+        clickButton={true}
+        text="添加"
+        icon={<PlusOutlined />}
+        modalTitle="添加用户"
+      />
       <Search
         placeholder="姓名"
         allowClear

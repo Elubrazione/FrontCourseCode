@@ -2,12 +2,7 @@
     margin: 0 1.5em;
 }
 
-.setting-border {
-    width: 2em;
-    height: 2em;
-    border: 1.5px solid rgb(198, 197, 197);
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.info {
+    width: 4em;
+    height: 4em;
 }
