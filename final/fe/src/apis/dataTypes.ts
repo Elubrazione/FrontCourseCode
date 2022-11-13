@@ -1,12 +1,12 @@
 export interface formDataType {
-    key: string;
-    avatar: string;
+    key?: string;
     name: string;
     major: string;
     year: string;
-    sex: string;
+    gender: string;
     phone: number;
     mail: string;
+    avatar: string;
 }
 
 export default formDataType;

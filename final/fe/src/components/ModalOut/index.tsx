@@ -7,9 +7,10 @@ interface IProps {
   text: string;
   icon?: any;
   modalTitle: string
+  submitValues?: any;
 }
 
-const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle}) => {
+const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -35,7 +36,7 @@ const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle}) => {
         title={modalTitle} open={isModalOpen} onOk={handleOk}
         onCancel={handleCancel} okText="确认" cancelText="取消"
       >
-				<SubmitForm />
+				<SubmitForm initial={!clickButton} initialValue={submitValues}/>
       </Modal>
     </>
   );

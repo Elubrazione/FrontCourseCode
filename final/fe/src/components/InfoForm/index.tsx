@@ -6,15 +6,60 @@ import { formDataType } from "../../apis/dataTypes";
 import StuActions from "./StuActions";
 import "./index.css";
 
-// const handleMenuClick: MenuProps["onClick"] = e => {
-//   message.info("Click on menu item.");
-//   console.log("click", e);
-// };
+const data: formDataType[] = [
+  {
+    key: "1",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    gender: "男",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "2",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CE",
+    year: "2022",
+    gender: "男",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "3",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    gender: "女",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "4",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    gender: "男",
+    phone: 111,
+    mail: "google"
+  },
+  {
+    key: "5",
+    avatar: faker.image.abstract(),
+    name: "John Brown",
+    major: "CS",
+    year: "2022",
+    gender: "女",
+    phone: 111,
+    mail: "google"
+  },
+];
 
-// const menuProps = {
-//   items,
-//   onClick: handleMenuClick,
-// };
+const InfoForm: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
 
 const columns: ColumnsType<formDataType> = [
   {
@@ -40,16 +85,16 @@ const columns: ColumnsType<formDataType> = [
   },
   {
     title: "性别",
-    dataIndex: "sex",
-    key: "sex",
-    render: sex => {
-        let color = "red";
-        if (sex === "男") {
-            color = "blue";
-        }
-        return (
-            <Tag color={color} key={sex}>{sex}</Tag>
-        );}
+    dataIndex: "gender",
+    key: "gender",
+    render: gender => {
+      let color = "red";
+      if (gender === "男") {
+        color = "blue";
+      }
+      return (
+        <Tag color={color} key={gender}>{gender}</Tag>
+      );}
   },
   {
     title: "电话",
@@ -59,68 +104,13 @@ const columns: ColumnsType<formDataType> = [
   {
     title: "邮箱",
     dataIndex: "mail",
-    key: "address",
+    key: "mail",
   },
   {
     title: "操作",
     key: "action",
-    render: () => <StuActions />,
+    render: (_, record) => <StuActions submitValues={record}/>,
   },
 ];
-
-const data: formDataType[] = [
-  {
-    key: "1",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    sex: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "2",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    sex: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "3",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    sex: "女",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "4",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    sex: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "5",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    sex: "女",
-    phone: 111,
-    mail: "google"
-  },
-];
-
-const InfoForm: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
 
 export default InfoForm;
