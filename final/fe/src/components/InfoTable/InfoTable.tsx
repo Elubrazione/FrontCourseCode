@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { faker } from "@faker-js/faker";
-import { Avatar, Table, Tag } from "antd";
+import { Image, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
 import StuActions from "../StuActions/StuActions";
@@ -66,7 +66,7 @@ const columns: ColumnsType<formDataType> = [
     title: "头像",
     dataIndex: "avatar",
     key: "avatar",
-    render: avatar => <Avatar shape="square" src={avatar} className="info"/>,
+    render: avatar => <Image src={avatar} className="info"/>,
   },
   {
     title: "姓名",

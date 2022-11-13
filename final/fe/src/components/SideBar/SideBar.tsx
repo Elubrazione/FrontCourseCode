@@ -17,7 +17,7 @@ const SideBar: FC = () => {
   });
 
   return (
-    <Sider className="sider">
+    <Sider className="sider" style={{height: "92vh"}} width={150}>
       <Menu
         mode="inline"
         defaultSelectedKeys={["sub1"]}

@@ -1,6 +1,11 @@
+body {
+    background-color: rgb(3, 21, 41);
+}
+
 .login-root {
     border-width: 5px;
     border-color: black;
+    background-color: white;
     width: 390px;
     height: 225px;
     margin: auto;
@@ -25,11 +30,6 @@
     margin-bottom: 22px;
 }
 
-.ant-col.ant-form-item-label {
-    align-items: flex-start;
-    width: 25%;
-}
-
 .ant-form-item-control-input-content {
     display: flex;
     align-items: center;
@@ -43,4 +43,3 @@
 .button {
     flex: 1;
 }
-

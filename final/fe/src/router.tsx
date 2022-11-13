@@ -1,21 +1,25 @@
 import React from "react";
-import { createHashRouter } from "react-router-dom";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import NotFound from "./pages/NotFound";
+import { createBrowserRouter } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import StuSingle from "./pages/StuSingle/StuSingle";
+import Main from "./pages/Main/Main";
+import NotFound from "./pages/NotFound/NotFound";
 
-const router = createHashRouter ([
-	{   // 第一个界面，登录界面
+const router = createBrowserRouter ([
+	{
 		path: "/",
 		element: <Main />,
 		errorElement: <NotFound />,
-		children: [
-			{
-				// 登录成功，跳转到主页面
-				path: "",
-				element: <Main />
-			}
-		]
+	},
+	{
+		path: "detail",
+		element: <StuSingle />,
+		errorElement: <NotFound />,
+	},
+	{
+		path: "login",
+		element: <Login />,
+		errorElement: <NotFound />,
 	}
 ]);
 

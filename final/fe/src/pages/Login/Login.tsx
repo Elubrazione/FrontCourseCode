@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import "antd/dist/antd.css";
-import "./index.css";
+import "./Login.css";
 
-const Login: FC = () => {
+const Login = () => {
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
@@ -16,13 +16,10 @@ const Login: FC = () => {
     <div className="login-root">
       <div className="login-head">登录</div>
       <Form
-      // name="basic"
-      // labelCol={{ span: 2 }}
-      // wrapperCol={{ span: 4 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
         <Form.Item
           label="Username"

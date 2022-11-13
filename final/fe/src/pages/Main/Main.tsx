@@ -3,7 +3,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import InfoForm from "../../components/InfoTable/InfoTable";
 import DataSelect from "../../components/HeadOps/HeadOps";
 import HeadBar from "../../components/HeadBar/HeadBar";
-import "./index.css";
+import "./Main.css";
 import { Layout } from "antd";
 
 const Main = () => {

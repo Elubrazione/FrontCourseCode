@@ -1,4 +1,4 @@
-import "./index.css";
+import "./NotFound.css";
 import React from "react";
 
 const NotFound = () => {

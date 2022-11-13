@@ -7,8 +7,15 @@ import "./HeadBar.css";
 const { Header } = Layout;
 
 const HeadBar: FC = () => {
+  const items: MenuProps["items"] = [
+    {
+      label: "退出登录",
+      key: "0",
+    },
+  ];
+
   return (
-    <Header className="header">
+    <Header className="header" style={{height: "8vh"}}>
       <span className="header-text">人员管理系统</span>
       <div className="user">
         <span className="header-username">admin</span>
@@ -24,10 +31,4 @@ const HeadBar: FC = () => {
   );
 };
 
-const items: MenuProps["items"] = [
-  {
-    label: "退出登录",
-    key: "0",
-  },
-];
 export default HeadBar;
