@@ -1,16 +1,16 @@
 const Koa = require('koa');
-const Router = require('koa-router');
+const Router = require('koa-router')
+const onerror = require('koa-onerror');
 const static = require('koa-static');
 const views = require('koa-views');
+const session = require('koa-session');
 const json = require('koa-json');
 const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
-const session = require('koa-session');
 
 const app = new Koa();
-const router = new Router();
-const userLogin = require('./src/user_login');
-const dataHandler = require('./src/data_handler');
+const loginRouter = require('./src/user_login');
+const infoRouter = require('./src/data_handler');
 
 // cookie_session
 app.keys = ['this is my secret set'];
@@ -31,7 +31,6 @@ app.use(
   )
 );
 
-// middlewares
 app.use(
   bodyparser({
     enableTypes: ['json', 'form', 'text'],
@@ -39,24 +38,14 @@ app.use(
 );
 app.use(json());
 app.use(logger());
-app.use(static(__dirname + '/static/'));
 
-app.use(
-  views(__dirname + '/public', {
-    map: { html: 'ejs' },
-  })
-);
-
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-});
+app.use(static(__dirname + '/dist/'));
 
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx);
 });
 
-module.exports = app;
+app.use(loginRouter.routes()).use(loginRouter.allowedMethods());
+app.use(infoRouter.routes()).use(infoRouter.allowedMethods());
+
+app.listen(3001);

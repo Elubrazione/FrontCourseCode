@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
-const router = new Router();
+const infoRouter = new Router();
 const file = path.resolve(__dirname, '/static/students.json');
 
 const dataHandler = {
@@ -13,7 +13,6 @@ const dataHandler = {
 			await next();
 		}
 	},
-
 
   getStuInfos: async (ctx, next) => {
     // console.log('query: ', ctx.query);
@@ -29,7 +28,6 @@ const dataHandler = {
     };
   },
 
-
 	createStudent: async (ctx, next) => {
 		const newStudent = {};
 		fs.writeFile(newStudent, file, (err) => {
@@ -41,13 +39,21 @@ const dataHandler = {
 	},
 
 	deleteStudent: async (ctx, next) => {
-		
-	}
+
+	},
+
+	updateStudent: async (ctx, next) => {
+
+	},
+
+
 };
 
-router.prefix('/api/stu');
-router.post('/create', dataHandler.createStudent);
-router.post('/delete');
-router.post('/update');
+infoRouter.prefix('/api/stu');
+infoRouter.get('/info', dataHandler.loginStatus);
+infoRouter.get('/list', dataHandler.getStuInfos);
+infoRouter.post('/create', dataHandler.createStudent);
+infoRouter.post('/delete', dataHandler.deleteStudent);
+infoRouter.post('/update', dataHandler.updateStudent);
 
-module.exports = router;
+module.exports = infoRouter;

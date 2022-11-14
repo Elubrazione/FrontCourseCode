@@ -1,28 +1,31 @@
 const Router = require('koa-router');
-const router = new Router();
+const loginRouter = new Router();
 
-const userLogin = {
-  checkLogin: async (ctx, next) => {
-    let { name, password } = ctx.request.body;
-    if (name === 'root') {
-      if (password === '123456') {
-        ctx.session.user = name;
-        // ctx.response.redirect('/');
-      } else {
-				ctx.body = { code: -1, message: '密码错误，登陆失败！' };
-			}
+async function checkLogin (ctx, next) {
+  await next();
+  const { username, password, remember } = ctx.request.body;
+  console.log(ctx.request.body);
+  if (username === 'root') {
+    if (password === '123456') {
+      ctx.session.user = username;
+      ctx.body = { code: 0, message: '登陆成功' };
     } else {
-			ctx.body = { code: -1, message: '账号错误，登陆失败！' };
-		}
-  },
-
-  logOut: async (ctx, next) => {
-    ctx.session.user = null;
+      ctx.body = { code: -1, message: '密码错误，登陆失败！' };
+    }
+  } else {
+    ctx.body = { code: -1, message: '账号错误，登陆失败！' };
   }
-};
+}
 
-router.prefix('/api/user');
-router.post('/login', userLogin.checkLogin);
-router.post('/logout', userLogin.logOut);
+async function logOut (ctx, next) {
+  ctx.session.user = null;
+}
 
-module.exports = router;
+loginRouter.prefix('/api/user');
+loginRouter.post('/login', checkLogin);
+loginRouter.post('/logout', logOut);
+
+module.exports = loginRouter;
+
+// app.use(loginRouter.routes()).use(loginRouter.allowedMethods());
+// app.listen(3001);
