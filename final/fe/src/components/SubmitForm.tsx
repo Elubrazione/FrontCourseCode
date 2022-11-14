@@ -1,6 +1,5 @@
 import { Form, Input, Select } from "antd";
 import React, { FC } from "react";
-import { formDataType } from "../apis/dataTypes";
 
 interface IProps {
   initialValue: any;
