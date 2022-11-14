@@ -59,8 +59,6 @@ const data: formDataType[] = [
   },
 ];
 
-const InfoTable: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
-
 const columns: ColumnsType<formDataType> = [
   {
     title: "头像",
@@ -112,5 +110,7 @@ const columns: ColumnsType<formDataType> = [
     render: (_, record) => <StuActions submitValues={record}/>,
   },
 ];
+
+const InfoTable: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
 
 export default InfoTable;

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-	const linkToHome = () => {navigate("/system");};
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
@@ -21,7 +20,7 @@ const Login = () => {
       console.log("Axios Success: ", res.data);
       const { code, message } = res.data;
       if (code === 0) {
-        linkToHome();
+        navigate("/system");
       } else {
         // todo: 提示信息
         console.log(message);
