@@ -1,10 +1,10 @@
 import React from "react";
 import SideBar from "../../components/SideBar/SideBar";
-import InfoForm from "../../components/InfoTable/InfoTable";
-import DataSelect from "../../components/HeadOps/HeadOps";
 import HeadBar from "../../components/HeadBar/HeadBar";
 import "./Main.css";
 import { Layout } from "antd";
+import InfoTable from "../../components/InfoTable/InfoTable";
+import ButtonArea from "../../components/ButtonArea/ButtonArea";
 
 const Main = () => {
   return (
@@ -13,8 +13,8 @@ const Main = () => {
       <Layout>
         <SideBar />
         <Layout className="info-main">
-          <DataSelect />
-          <InfoForm />
+          <ButtonArea />
+          <InfoTable />
         </Layout>
       </Layout>
     </>

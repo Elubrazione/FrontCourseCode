@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { Button, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import ModalOut from "../ModalOut";
-import "./HeadOps.css";
+import "./ButtonArea.css";
 
-const DataSelect: FC = () => {
+const ButtonArea: FC = () => {
   const { Search } = Input;
   const onSearch = (value: string) => console.log(value);
   return (
@@ -27,4 +27,4 @@ const DataSelect: FC = () => {
   );
 };
 
-export default DataSelect;
+export default ButtonArea;

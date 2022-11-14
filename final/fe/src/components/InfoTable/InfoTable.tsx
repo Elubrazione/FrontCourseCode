@@ -59,7 +59,7 @@ const data: formDataType[] = [
   },
 ];
 
-const InfoForm: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
+const InfoTable: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
 
 const columns: ColumnsType<formDataType> = [
   {
@@ -113,4 +113,4 @@ const columns: ColumnsType<formDataType> = [
   },
 ];
 
-export default InfoForm;
+export default InfoTable;

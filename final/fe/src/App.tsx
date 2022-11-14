@@ -6,11 +6,11 @@ import router from "./router";
 import "./styles/index.css";
 
 const App = () => {
-	return (
-		<Provider store={store}>
-			<RouterProvider router={router} />
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 };
 
 export default App;

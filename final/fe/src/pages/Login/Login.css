@@ -6,7 +6,7 @@ body {
     border-width: 5px;
     border-color: black;
     background-color: white;
-    width: 390px;
+    width: 300px;
     height: 225px;
     margin: auto;
     position: fixed;
@@ -36,10 +36,10 @@ body {
 }
 
 .checkbox {
-    margin-left: 25%;
     flex: 3;
 }
 
 .button {
     flex: 1;
 }
+
