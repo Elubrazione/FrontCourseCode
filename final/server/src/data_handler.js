@@ -2,58 +2,57 @@ const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
 const infoRouter = new Router();
-const file = path.resolve(__dirname, '/static/students.json');
+const file = path.join(__dirname, '/static/students.json');
 
-const dataHandler = {
-	loginStatus: async (ctx, next) => {
-		if (!ctx.session.user) {
-			ctx.body = { code: -2, message: '请先登录！'};
-			return;
-		} else {
-			await next();
-		}
-	},
+let stuInfos = [];
+fs.readFile('./static/students.json', 'utf-8', (err, data) => {
+	if (err) throw err;
+	console.log('origin_type: ', typeof(data));
+	stuInfos = JSON.parse(data);
+});
 
-  getStuInfos: async (ctx, next) => {
-    // console.log('query: ', ctx.query);
-		const stuInfos = fs.readFile(file, 'utf-8', (err, data) => {
-			if (err) throw err;
-			console.log(data);
-		});
+async function loginStatus (ctx, next) {
+	console.log('user: ', ctx.session.user);
+	if (!ctx.session.user) {
+		ctx.body = { code: -1, message: '请先登录！'};
+	} else {
+		ctx.body = { code: 0, message: '登陆成功' };
+	}
+};
 
-    ctx.body = {
-      code: 0,
-      total: stuInfos.length,
-      list: stuInfos
-    };
-  },
+async function getStuInfos (ctx, next) {
+	console.log('begin!');
+	ctx.body = {
+		code: 0,
+		total: stuInfos.length,
+		list: stuInfos
+	};
+};
 
-	createStudent: async (ctx, next) => {
-		const newStudent = {};
-		fs.writeFile(newStudent, file, (err) => {
-			if (err) throw err;
-			console.log('The file has been saved!');
-		});
+async function createStudent (ctx, next) {
+	const newStudent = ctx.request.body;
+	console.log(newStudent);
+	fs.writeFile(newStudent, file, (err) => {
+		if (err) throw err;
+		console.log();
+	});
 
-		ctx.body = {code: 0, message: "添加学生成功！"};
-	},
+	ctx.body = {code: 0, message: "添加学生成功！"};
+};
 
-	deleteStudent: async (ctx, next) => {
+async function deleteStudent (ctx, next) {
 
-	},
+};
 
-	updateStudent: async (ctx, next) => {
-
-	},
-
+async function updateStudent (ctx, next) {
 
 };
 
 infoRouter.prefix('/api/stu');
-infoRouter.get('/info', dataHandler.loginStatus);
-infoRouter.get('/list', dataHandler.getStuInfos);
-infoRouter.post('/create', dataHandler.createStudent);
-infoRouter.post('/delete', dataHandler.deleteStudent);
-infoRouter.post('/update', dataHandler.updateStudent);
+infoRouter.get('/info', loginStatus);
+infoRouter.get('/list', getStuInfos);
+infoRouter.post('/create', createStudent);
+infoRouter.post('/delete', deleteStudent);
+infoRouter.post('/update', updateStudent);
 
 module.exports = infoRouter;

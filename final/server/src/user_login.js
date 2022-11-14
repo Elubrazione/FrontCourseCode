@@ -18,7 +18,9 @@ async function checkLogin (ctx, next) {
 }
 
 async function logOut (ctx, next) {
+  await next();
   ctx.session.user = null;
+  ctx.body = { code: 0, message: '退出成功！' };
 }
 
 loginRouter.prefix('/api/user');
