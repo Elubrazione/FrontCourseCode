@@ -7,7 +7,10 @@ export const stuSlice = createSlice({
   name: "stu",
   initialState: stuInfos,
   reducers: {
-		initStu: (state) => {},
+		initStu: (state, action) => {
+      state = [...action.payload];
+      console.log("state: ", state);
+    },
     addStu: (state) => {
       state.unshift();
     },

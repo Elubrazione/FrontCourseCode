@@ -12,6 +12,7 @@ const HeadBar: FC = () => {
   const navigate = useNavigate();
 
   const logOut = () => {
+    // todo：危险按钮
     axios.post("/api/user/logout")
     .then(res => {
       console.log("Axios Success: ", res.data);

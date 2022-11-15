@@ -1,63 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { Image, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
 import StuActions from "../StuActions/StuActions";
 import "./InfoTable.css";
-
-const data: formDataType[] = [
-  {
-    key: "1",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    gender: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "2",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CE",
-    year: "2022",
-    gender: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "3",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    gender: "女",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "4",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    gender: "男",
-    phone: 111,
-    mail: "google"
-  },
-  {
-    key: "5",
-    avatar: faker.image.abstract(),
-    name: "John Brown",
-    major: "CS",
-    year: "2022",
-    gender: "女",
-    phone: 111,
-    mail: "google"
-  },
-];
 
 const columns: ColumnsType<formDataType> = [
   {
@@ -111,6 +58,19 @@ const columns: ColumnsType<formDataType> = [
   },
 ];
 
-const InfoTable: FC = () => <Table columns={columns} dataSource={data} className="data-form" />;
+interface IProps {
+  stuInfos: formDataType[];
+}
+
+// todo: 分页问题，获取数据redux使用
+const InfoTable: FC<IProps> = ({stuInfos}) => {
+  return (
+    <Table
+      columns={columns}
+      dataSource={stuInfos}
+      className="data-form"
+    />
+  );
+};
 
 export default InfoTable;

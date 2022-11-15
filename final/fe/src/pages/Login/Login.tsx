@@ -17,7 +17,7 @@ const Login = () => {
       remember: values.remember
     })
     .then(res => {
-      console.log("Axios Success: ", res.data);
+      console.log("/api/user/login success: ", res.data);
       const { code, message } = res.data;
       if (code === 0) {
         navigate("/system");
