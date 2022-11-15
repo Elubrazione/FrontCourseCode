@@ -5,6 +5,7 @@ import { Layout, Avatar, Dropdown, MenuProps, Modal } from "antd";
 import "antd/dist/antd.css";
 import "./HeadBar.css";
 import { useNavigate } from "react-router-dom";
+import formDataType from "../../apis/dataTypes";
 
 const { Header } = Layout;
 

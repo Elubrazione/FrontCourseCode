@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: "detail",
+    path: "detail/:key",
     element: <StuSingle />,
     errorElement: <NotFound />,
   },

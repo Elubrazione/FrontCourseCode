@@ -3,8 +3,6 @@ import { Form, Input, Select, Button } from "antd";
 import axios from "axios";
 import React, { FC } from "react";
 import formDataType from "../apis/dataTypes";
-import { useAppDispatch, useAppSelector } from "../apis/redux/store";
-import { addStu, selectStudents, toggleStu } from "../apis/redux/stuSlice";
 import "./styles.css";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -15,7 +13,9 @@ interface IProps {
   editVer: boolean;
   initialValue: any;
   handleOK: Function;
-  handleCancel: Function
+  handleCancel: Function;
+  stuInfos: formDataType[];
+  updateStuInfos: Function;
 }
 
 const layout = {
@@ -31,19 +31,17 @@ const validateMessages = {
   },
 };
 
-const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
-  const stuInfos = useAppSelector(selectStudents);
+const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel, stuInfos, updateStuInfos}) => {
   console.log("ss:  ", stuInfos);
-  const dispatch = useAppDispatch();
 
   const onFinish = (values: any) => {
     console.log(values);
-    let stu = {};
+
     if (initialValue !== undefined) {
       const data = stuInfos.find(ele => ele?.key === initialValue.key);
       console.log(data);
       if (data !== undefined) {
-        stu = {
+        const stu = {
           key: initialValue.key,
           name: values.name,
           major: values.major,
@@ -53,9 +51,11 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
           mail: values.mail,
           avatar: initialValue.avatar
         };
-        dispatch(toggleStu(stu));
+        // dispatch(toggleStu(stu));
         const index = stuInfos.indexOf(data);
         console.log("index: ", index);
+        stuInfos[index] = stu;
+        updateStuInfos(stuInfos);
 
         axios.post("/api/stu/update", {stu, index})
         .then(res => {
@@ -64,7 +64,7 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
         .catch(err => console.log(err));
       };
     } else {
-      stu = {
+      const stu = {
         key: uuid(),
         name: values.name,
         major: values.major,
@@ -74,7 +74,8 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
         mail: values.mail,
         avatar: faker.image.avatar()
       };
-      dispatch(addStu(stu));
+      updateStuInfos([stu, ...stuInfos]);
+      // dispatch(addStu(stu));
       axios.post("/api/stu/create", stu)
       .then(res => {
         console.log("/api/stu/create success: ", res.data);

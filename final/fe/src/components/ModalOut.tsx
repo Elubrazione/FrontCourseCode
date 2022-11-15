@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import React, { useState, FC } from "react";
+import formDataType from "../apis/dataTypes";
 import SubmitForm from "./SubmitForm";
 
 interface IProps {
@@ -8,9 +9,11 @@ interface IProps {
   icon?: any;
   modalTitle: string
   submitValues?: any;
+  stuInfos: formDataType[];
+  updateStuInfos: Function;
 }
 
-const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues}) => {
+const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues, stuInfos, updateStuInfos}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,8 +40,9 @@ const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues
         title={modalTitle} open={isModalOpen} onOk={handleOk}
         onCancel={handleCancel} okText="确认" cancelText="取消" footer={null}
       >
-				<SubmitForm editVer={!clickButton} initialValue={submitValues}
-          handleOK={handleOk} handleCancel={handleCancel}
+				<SubmitForm
+          editVer={!clickButton} initialValue={submitValues} handleOK={handleOk}
+          handleCancel={handleCancel} stuInfos={stuInfos} updateStuInfos={updateStuInfos}
         />
       </Modal>
     </>

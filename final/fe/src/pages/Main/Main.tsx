@@ -7,28 +7,17 @@ import { Alert, Layout } from "antd";
 import InfoTable from "../../components/InfoTable/InfoTable";
 import ButtonArea from "../../components/ButtonArea/ButtonArea";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../apis/redux/store";
 import formDataType from "../../apis/dataTypes";
-import { selectStudents, setStu } from "../../apis/redux/stuSlice";
-
-let tempData: formDataType[] = [];
 
 const Main = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [unloginAlert, setUnloginAlert] = useState<boolean>(false);
-  const [stuInfos, setStuInfos] = useState<formDataType[]>(useAppSelector(selectStudents));
-  console.log("get from store: ", stuInfos);
+  const [stuInfos, setStuInfos] = useState<formDataType[]>([]);
 
-  // useEffect(() => {
-  //   axios.get("/api/stu/list")
-  //   .then(res => {
-  //     console.log(res.data.list);
-  //     tempData = res.data.list;
-  //   })
-  //   .catch(err => console.log(err));
-  // }, []);
+  const updtStu = (values: formDataType[]) => {
+    setStuInfos([...values]);
+  };
 
   useEffect(() => {
     axios.get("/api/stu/info")
@@ -45,8 +34,6 @@ const Main = () => {
         axios.get("/api/stu/list")
         .then(res => {
           console.log(res.data.list);
-          tempData = res.data.list;
-          dispatch(setStu(res.data.list));
           setStuInfos(res.data.list);
         })
         .catch(err => console.log(err));
@@ -61,7 +48,7 @@ const Main = () => {
       <Layout>
         <SideBar />
         <Layout className="info-main">
-          <ButtonArea />
+          <ButtonArea stuInfos={stuInfos} updateStuInfos={updtStu}/>
           { unloginAlert?
             <Alert
               message="错误"
@@ -69,7 +56,7 @@ const Main = () => {
               type="error"
               showIcon
             />:
-            <InfoTable stuInfos={stuInfos}/>
+            <InfoTable stuInfos={stuInfos} updateStuInfos={updtStu}/>
           }
         </Layout>
       </Layout>

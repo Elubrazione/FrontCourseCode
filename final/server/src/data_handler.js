@@ -52,8 +52,8 @@ async function createStudent (ctx, next) {
 };
 
 async function deleteStudent (ctx, next) {
-	const { index } = ctx.request.body;
-	stuInfos = stuInfos.splice(index, 1);
+	stuInfos = ctx.request.body;
+	console.log(ctx.request.body);
 	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 		console.log();
@@ -66,10 +66,17 @@ async function updateStudent (ctx, next) {
 	stuInfos[index] = stu;
 	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
-		console.log();
 	});
-	ctx.body = {code: 0, message: "信息修改！"};
+	ctx.body = {code: 0, message: "信息修改成功！"};
 };
+
+async function clearStudent (ctx, next) {
+	stuInfos = [];
+	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+		if (err) throw err;
+	});
+	ctx.body = {code: 0, message: "信息修改成功！"};
+}
 
 infoRouter.prefix('/api/stu');
 infoRouter.get('/info', loginStatus);
@@ -77,5 +84,6 @@ infoRouter.get('/list', getStuInfos);
 infoRouter.post('/create', createStudent);
 infoRouter.post('/delete', deleteStudent);
 infoRouter.post('/update', updateStudent);
+infoRouter.post('/clear', clearStudent);
 
 module.exports = infoRouter;

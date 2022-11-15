@@ -1,5 +1,5 @@
 export interface formDataType {
-    key?: string;
+    key: string;
     name: string;
     major: string;
     year: string;

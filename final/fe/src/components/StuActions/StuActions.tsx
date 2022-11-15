@@ -5,12 +5,15 @@ import "./StuActions.css";
 import ModalOut from "../ModalOut";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import formDataType from "../../apis/dataTypes";
 
 interface IProps {
-  submitValues: any;
+  submitValues: formDataType;
+  stuInfos: formDataType[];
+  updateStuInfos: Function;
 }
 
-const StuActions: FC<IProps> = ({submitValues}) => {
+const StuActions: FC<IProps> = ({submitValues, stuInfos, updateStuInfos}) => {
 
   const deleteConfirm = () => {
     Modal.confirm({
@@ -21,7 +24,12 @@ const StuActions: FC<IProps> = ({submitValues}) => {
       okType: "danger",
       cancelText: "取消",
       onOk() {
-        axios.post("/api/stu/delete")
+        const index = stuInfos.indexOf(submitValues);
+        console.log(submitValues, index, stuInfos);
+        stuInfos.splice(index, 1);
+        console.log(stuInfos);
+        updateStuInfos(stuInfos);
+        axios.post("/api/stu/delete", stuInfos)
         .then(res => {
           console.log(res.data);
         })
@@ -33,11 +41,15 @@ const StuActions: FC<IProps> = ({submitValues}) => {
   const items: MenuProps["items"] = [
     {
       key: "0",
-      label: <Link to="/detail">查看</Link>,
+      label: <Link to={`/detail/${submitValues.key}`}>查看</Link>,
     },
     {
       key: "1",
-      label: (<ModalOut clickButton={false} text="编辑" modalTitle="编辑用户" submitValues={submitValues}/>),
+      label: (<ModalOut
+                clickButton={false} text="编辑"
+                modalTitle="编辑用户" submitValues={submitValues}
+                stuInfos={stuInfos} updateStuInfos={updateStuInfos}
+              />),
     },
     {
       key: "2",
