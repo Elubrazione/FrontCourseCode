@@ -3,8 +3,6 @@ import { Button, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import ModalOut from "../ModalOut";
 import "./ButtonArea.css";
-// import { useAppDispatch } from "../../apis/redux/store";
-// import { toggleStu } from "../../apis/redux/stuSlice";
 import formDataType from "../../apis/dataTypes";
 import axios from "axios";
 
@@ -15,7 +13,36 @@ interface IProps {
 
 const ButtonArea: FC<IProps> = ({stuInfos, updateStuInfos}) => {
   const { Search } = Input;
-  const onSearch = (value: string) => console.log(value);
+
+  const onSearch = (value: string) => {
+    value = value.replace(/(^\s*)|(\s*$)/g, "");
+    if (value === "") {
+      console.log(true);
+      axios.get("/api/stu/list")
+      .then(res => {
+        console.log(res.data.list);
+        updateStuInfos(res.data.list);
+      })
+      .catch(err => console.log(err));
+      return stuInfos;
+    };
+    const nameList: string[] = [];
+    for(let i=0; i<stuInfos.length; i++) {
+      nameList.push(stuInfos[i].name);
+    }
+    console.log(value);
+    console.log(nameList);
+    const arr = [];
+    for (let i = 0; i < stuInfos.length; i++) {
+      if (nameList[i].split(value).length > 1) {
+        console.log(nameList[i].split(value));
+        arr.push(stuInfos[i]);
+      }
+    }
+    console.log("search:", arr);
+    updateStuInfos(arr);
+    return arr;
+  };
 
   const clearStuInfos = () => {
     updateStuInfos([]);

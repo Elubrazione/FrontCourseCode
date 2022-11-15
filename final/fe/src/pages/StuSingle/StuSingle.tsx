@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import { Content } from "antd/lib/layout/layout";
 import StuDetails from "../../components/StuDetails/StuDetails";
 import "./StuSingle.css";
-import { faker } from "@faker-js/faker";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import formDataType from "../../apis/dataTypes";
