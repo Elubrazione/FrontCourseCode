@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import formDataType from "../dataTypes";
+import { RootState } from "./store";
 
 const stuInfos: formDataType[] = [];
 
@@ -28,4 +30,5 @@ export const {
 	clearStus
 } = stuSlice.actions;
 
+export const selectStudents = (state: RootState) => state.student;
 export default stuSlice.reducer;

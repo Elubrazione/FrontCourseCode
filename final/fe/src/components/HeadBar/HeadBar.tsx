@@ -5,11 +5,14 @@ import { Layout, Avatar, Dropdown, MenuProps } from "antd";
 import "antd/dist/antd.css";
 import "./HeadBar.css";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../apis/redux/store";
+import { initStu } from "../../apis/redux/stuSlice";
 
 const { Header } = Layout;
 
 const HeadBar: FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const logOut = () => {
     // todo：危险按钮
@@ -19,6 +22,7 @@ const HeadBar: FC = () => {
       const { code, message } = res.data;
       if (code === 0) {
         console.log(message);
+        dispatch(initStu([]));
         navigate("/");
       }
     })

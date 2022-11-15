@@ -1,11 +1,16 @@
-import { Form, Input, Select } from "antd";
+import { Form, Input, Select, Button } from "antd";
+import axios from "axios";
 import React, { FC } from "react";
+import { useAppSelector } from "../apis/redux/store";
+import { selectStudents } from "../apis/redux/stuSlice";
+import "./styles.css";
+const { Option } = Select;
 
 interface IProps {
   initialValue: any;
+  handleOK: Function;
+  handleCancel: Function
 }
-
-const { Option } = Select;
 
 const layout = {
   labelCol: { span: 0 },
@@ -20,31 +25,50 @@ const validateMessages = {
   },
 };
 
-const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
-    <Select style={{ width: 70 }} disabled={true} defaultValue="86">
-      <Option value="86">+86</Option>
-    </Select>
-  </Form.Item>
-);
+const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
+  const stuInfos = useAppSelector(selectStudents);
+  console.log(stuInfos);
 
-const suffixSelector = (
-  <Form.Item name="suffix" noStyle>
-    <Select style={{ width: 70 }} disabled={true} defaultValue="college">
-      <Option value="college">学院</Option>
-    </Select>
-  </Form.Item>
-);
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select style={{ width: 70 }} disabled={true} defaultValue="86">
+        <Option value="86">+86</Option>
+      </Select>
+    </Form.Item>
+  );
 
-const SubmitForm: FC<IProps> = ({initialValue}) => {
+  const suffixSelector = (
+    <Form.Item name="suffix" noStyle>
+      <Select style={{ width: 70 }} disabled={true} defaultValue="college">
+        <Option value="college">学院</Option>
+      </Select>
+    </Form.Item>
+  );
+
   const onFinish = (values: any) => {
     console.log(values);
+    axios.post("/api/stu/create", {
+      id: stuInfos.length+1,
+      name: values.name,
+      major: values.major,
+      year: values.year,
+      gender: values.gender,
+      phone: values.phone,
+      mail: values.mail
+    })
+    .then(res => {
+      console.log("/api/stu/create success: ", res.data);
+    })
+    .catch(err => console.log(err));
+    handleOK();
   };
+
 
   return (
     <Form {...layout} name="nest-messages" onFinish={onFinish}
           validateMessages={validateMessages}
           initialValues={initialValue}>
+
       <Form.Item name="name" label="姓名" rules={[{required: true}]}>
         <Input />
       </Form.Item>
@@ -81,6 +105,17 @@ const SubmitForm: FC<IProps> = ({initialValue}) => {
 
       <Form.Item name="mail" label="邮箱" rules={[{type: "email"}, {required: true}]}>
         <Input />
+      </Form.Item>
+
+      <Form.Item>
+        <div className="modal-button">
+          <Button className="button-cancel" onClick={() => handleCancel()}>
+            取消
+          </Button>
+          <Button type="primary" htmlType="submit" className="button-commit">
+            提交
+          </Button>
+        </div>
       </Form.Item>
 
     </Form>

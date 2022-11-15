@@ -10,7 +10,7 @@ import { faker } from "@faker-js/faker";
 
 const StuSingle = () => {
 	const navigate = useNavigate();
-	const linkToHome = () => {navigate("/");};
+	const linkToHome = () => {navigate("/system");};
 
 	return (
 		<>

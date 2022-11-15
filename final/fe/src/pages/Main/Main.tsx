@@ -3,7 +3,7 @@ import axios from "axios";
 import SideBar from "../../components/SideBar/SideBar";
 import HeadBar from "../../components/HeadBar/HeadBar";
 import "./Main.css";
-import { Layout } from "antd";
+import { Alert, Layout } from "antd";
 import InfoTable from "../../components/InfoTable/InfoTable";
 import ButtonArea from "../../components/ButtonArea/ButtonArea";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ let tempData: formDataType[] = [];
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [unloginAlert, setUnloginAlert] = useState<boolean>(false);
   const [stuInfos, setStuInfos] = useState<formDataType[]>(useAppSelector(state => state.student));
 
   axios.get("/api/stu/list")
@@ -23,8 +24,11 @@ const Main = () => {
     const { code, total, list } = res.data;
     if (code === -1) {
       console.log(code);
-      // todo: 加一个弹窗提示
-      navigate("/");
+      tempData = list;
+      setUnloginAlert(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } else {
       console.log(code, total, list);
       dispatch(initStu(list));
@@ -34,7 +38,7 @@ const Main = () => {
   .catch(err => console.log(err));
 
   useEffect(() => {
-    setStuInfos(tempData);
+    setStuInfos([...tempData]);
   }, [tempData]);
 
   return (
@@ -44,7 +48,15 @@ const Main = () => {
         <SideBar />
         <Layout className="info-main">
           <ButtonArea />
-          <InfoTable stuInfos={stuInfos}/>
+          { unloginAlert?
+            <Alert
+              message="错误"
+              description="请先登录！"
+              type="error"
+              showIcon
+            />:
+            <InfoTable stuInfos={stuInfos}/>
+          }
         </Layout>
       </Layout>
     </>
