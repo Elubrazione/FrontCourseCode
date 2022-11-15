@@ -1,61 +1,18 @@
+# 人员管理系统
+
+## 要求清单
+- 项目目录 final。前后端分离，前端项目放在fe文件夹，后端项目放在server；即final/fe,final/server
+  - 前端：React + Typescript，需要相应的README，记录开发完成的思路以及遇到的问题。
+  - 后端：NodeJS + Koa，数据持久化使用json文件保存即可，需要相应的README，记录开发完成的思路、接口设计、数据结构设计，遇到的问题以及运行说明。ts和js均可，ts是加分项。
+- 代码有良好的可读性，遵守编码规范，有合适的代码注释。
+- 合理拆分函数、组件以及模块，切忌所有的代码写到一个文件。
+
 ## 完成思路
 #### 前端
-##### 1. 完成UI部分（components和router）
-##### 2. 添加Redux做全局状态管理
-- state：一个 `stuInfos` 的列表，存储着所有的学生信息；
-- actions：
-  （1）`addStu` => 添加学生；
-  （2）`toggleStu` => 修改学生信息；
-  （3) `deleteStu` => 删除学生；
-  （4）`clearStus` => 清空学生列表。
-- views：
-  （1）`Main/DataSelect` 的**添加**按钮 => addStu；
-  （2）`Main/stuInfos` 表单 => 根据列表**展示**数据；
-  （3）`Main/stuInfos/stu` 单条数据的操作 => toggleStu，deleteStu
-
-##### 3. 重新配置webpack
-
+1. 完成UI部分
+2. 使用redux做全局管理
+3. 重新配置webpack
 #### 后端
 
-<!-- import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  selectCount
-} from './counterSlice'
-import styles from './Counter.module.css'
 
-export function Counter() {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
-  const [incrementAmount, setIncrementAmount] = useState('2')
-
-  return (
-    <div>
-      <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-        <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-      </div>
-      {/* 这里省略了额外的 render 代码 */}
-    </div>
-  )
-} -->
-
-在编辑表单的时候把数据存到表单组件中，当用户提交表单的时候再 dispatch action 来更新 store。
-
+##

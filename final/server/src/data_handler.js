@@ -52,7 +52,13 @@ async function createStudent (ctx, next) {
 };
 
 async function deleteStudent (ctx, next) {
-
+	const { index } = ctx.request.body;
+	stuInfos = stuInfos.splice(index, 1);
+	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+		if (err) throw err;
+		console.log();
+	});
+	ctx.body = {code: 0, message: "删除学生成功！"};
 };
 
 async function updateStudent (ctx, next) {

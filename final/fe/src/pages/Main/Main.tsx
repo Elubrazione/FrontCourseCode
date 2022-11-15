@@ -21,14 +21,14 @@ const Main = () => {
   const [stuInfos, setStuInfos] = useState<formDataType[]>(useAppSelector(selectStudents));
   console.log("get from store: ", stuInfos);
 
-  useEffect(() => {
-    axios.get("/api/stu/list")
-    .then(res => {
-      console.log(res.data.list);
-      tempData = res.data.list;
-    })
-    .catch(err => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios.get("/api/stu/list")
+  //   .then(res => {
+  //     console.log(res.data.list);
+  //     tempData = res.data.list;
+  //   })
+  //   .catch(err => console.log(err));
+  // }, []);
 
   useEffect(() => {
     axios.get("/api/stu/info")
@@ -42,8 +42,14 @@ const Main = () => {
           navigate("/");
         }, 3000);
       } else {
-        dispatch(setStu(tempData));
-        setStuInfos(tempData);
+        axios.get("/api/stu/list")
+        .then(res => {
+          console.log(res.data.list);
+          tempData = res.data.list;
+          dispatch(setStu(res.data.list));
+          setStuInfos(res.data.list);
+        })
+        .catch(err => console.log(err));
       }
     })
     .catch(err => console.log(err));
