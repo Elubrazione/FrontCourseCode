@@ -11,6 +11,20 @@ fs.readFile('./static/students.json', 'utf-8', (err, data) => {
 	stuInfos = JSON.parse(data);
 });
 
+async function loginStatus (ctx, next) {
+	if (!ctx.session.user) {
+		ctx.body = {
+			code: -1,
+			message: "请先登录！"
+		}
+	} else {
+		ctx.body = {
+			code: 0,
+			message: "已经登陆！"
+		}
+	}
+}
+
 async function getStuInfos (ctx, next) {
 	console.log('begin!');
 	if (ctx.session.user) {
@@ -30,7 +44,7 @@ async function getStuInfos (ctx, next) {
 
 async function createStudent (ctx, next) {
 	stuInfos.push(ctx.request.body);
-	fs.writeFile('/static/students.json', JSON.stringify(stuInfos), (err) => {
+	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 		console.log();
 	});
@@ -42,11 +56,17 @@ async function deleteStudent (ctx, next) {
 };
 
 async function updateStudent (ctx, next) {
-
+	const { stu, index } = ctx.request.body;
+	stuInfos[index] = stu;
+	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+		if (err) throw err;
+		console.log();
+	});
+	ctx.body = {code: 0, message: "信息修改！"};
 };
 
 infoRouter.prefix('/api/stu');
-// infoRouter.get('/info', loginStatus);
+infoRouter.get('/info', loginStatus);
 infoRouter.get('/list', getStuInfos);
 infoRouter.post('/create', createStudent);
 infoRouter.post('/delete', deleteStudent);

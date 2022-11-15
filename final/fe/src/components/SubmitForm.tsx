@@ -1,12 +1,18 @@
+import { faker } from "@faker-js/faker";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios";
-import React, { FC } from "react";
-import { useAppSelector } from "../apis/redux/store";
-import { selectStudents } from "../apis/redux/stuSlice";
+import React, { FC, useState } from "react";
+import formDataType from "../apis/dataTypes";
+import { useAppDispatch, useAppSelector } from "../apis/redux/store";
+import { addStu, selectStudents, toggleStu } from "../apis/redux/stuSlice";
 import "./styles.css";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const uuid = require("uuid").v4;
 const { Option } = Select;
 
 interface IProps {
+  editVer: boolean;
   initialValue: any;
   handleOK: Function;
   handleCancel: Function
@@ -26,8 +32,57 @@ const validateMessages = {
 };
 
 const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
-  const stuInfos = useAppSelector(selectStudents);
-  console.log(stuInfos);
+  const [stuInfos, setStuInfos] = useState<formDataType[]>(useAppSelector(selectStudents));
+  console.log("ss:  ", stuInfos);
+  const dispatch = useAppDispatch();
+
+  const onFinish = (values: any) => {
+    console.log(values);
+    let stu = {};
+    if (initialValue !== undefined) {
+      const data = stuInfos.find(ele => ele?.key === initialValue.key);
+      console.log(data);
+      if (data !== undefined) {
+        stu = {
+          key: initialValue.key,
+          name: values.name,
+          major: values.major,
+          year: values.year,
+          gender: values.gender,
+          phone: values.phone,
+          mail: values.mail,
+          avatar: initialValue.avatar
+        };
+        const index = stuInfos.indexOf(data);
+        console.log("index: ", index);
+
+        axios.post("/api/stu/update", {stu, index})
+        .then(res => {
+          console.log("/api/stu/create success: ", res.data);
+        })
+        .catch(err => console.log(err));
+        dispatch(toggleStu(stu));
+      };
+    } else {
+      stu = {
+        key: uuid(),
+        name: values.name,
+        major: values.major,
+        year: values.year,
+        gender: values.gender,
+        phone: values.phone,
+        mail: values.mail,
+        avatar: faker.image.avatar()
+      };
+      axios.post("/api/stu/create", stu)
+      .then(res => {
+        console.log("/api/stu/create success: ", res.data);
+      })
+      .catch(err => console.log(err));
+      dispatch(addStu(stu));
+    }
+    handleOK();
+  };
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -44,25 +99,6 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
       </Select>
     </Form.Item>
   );
-
-  const onFinish = (values: any) => {
-    console.log(values);
-    axios.post("/api/stu/create", {
-      id: stuInfos.length+1,
-      name: values.name,
-      major: values.major,
-      year: values.year,
-      gender: values.gender,
-      phone: values.phone,
-      mail: values.mail
-    })
-    .then(res => {
-      console.log("/api/stu/create success: ", res.data);
-    })
-    .catch(err => console.log(err));
-    handleOK();
-  };
-
 
   return (
     <Form {...layout} name="nest-messages" onFinish={onFinish}
@@ -82,10 +118,10 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
           placeholder="请下拉选择学生的年级（入学年份）"
           allowClear
         >
-          <Option value="y2019">2019级</Option>
-          <Option value="y2020">2020级</Option>
-          <Option value="y2021">2021级</Option>
-          <Option value="y2022">2022级</Option>
+          <Option value="2019级">2019级</Option>
+          <Option value="2020级">2020级</Option>
+          <Option value="2021级">2021级</Option>
+          <Option value="2022级">2022级</Option>
         </Select>
       </Form.Item>
 
@@ -94,8 +130,8 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
           placeholder="请下拉选择学生的性别"
           allowClear
         >
-          <Option value="male">男</Option>
-          <Option value="female">女</Option>
+          <Option value="男">男</Option>
+          <Option value="女">女</Option>
         </Select>
       </Form.Item>
 

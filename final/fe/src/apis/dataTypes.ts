@@ -9,4 +9,5 @@ export interface formDataType {
     avatar: string;
 }
 
+
 export default formDataType;

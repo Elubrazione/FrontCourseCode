@@ -4,31 +4,24 @@ import formDataType from "../dataTypes";
 import { RootState } from "./store";
 
 const stuInfos: formDataType[] = [];
-
 export const stuSlice = createSlice({
   name: "stu",
   initialState: stuInfos,
   reducers: {
-		initStu: (state, action) => {
+		setStu: (state, action: PayloadAction<formDataType[]>) => {
       state = [...action.payload];
       console.log("state: ", state);
     },
-    addStu: (state) => {
+    addStu: (state, action) => {
       state.unshift();
     },
-    toggleStu: (state) => {},
-    deleteStu: (state) => {},
-    clearStus: (state) => {},
+    toggleStu: (state, action) => {
+      state = action.payload;
+    },
+    // deleteStu: (state, action) => {},
   },
 });
 
-export const {
-	initStu,
-	addStu,
-	toggleStu,
-	deleteStu,
-	clearStus
-} = stuSlice.actions;
-
+export const { setStu, addStu, toggleStu } = stuSlice.actions;
 export const selectStudents = (state: RootState) => state.student;
 export default stuSlice.reducer;

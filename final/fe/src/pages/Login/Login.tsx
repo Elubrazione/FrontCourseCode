@@ -20,6 +20,7 @@ const Login = () => {
       console.log("/api/user/login success: ", res.data);
       const { code, message } = res.data;
       if (code === 0) {
+        console.log("navvv");
         navigate("/system");
       } else {
         // todo: 提示信息

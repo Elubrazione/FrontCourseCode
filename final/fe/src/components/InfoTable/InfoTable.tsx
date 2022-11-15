@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, memo, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { Image, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -64,6 +64,7 @@ interface IProps {
 
 // todo: 分页问题，获取数据redux使用
 const InfoTable: FC<IProps> = ({stuInfos}) => {
+
   return (
     <Table
       columns={columns}

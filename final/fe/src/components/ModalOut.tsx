@@ -1,6 +1,5 @@
 import { Button, Modal } from "antd";
-import axios from "axios";
-import React, { useState, FC, Children } from "react";
+import React, { useState, FC } from "react";
 import formDataType from "../apis/dataTypes";
 import SubmitForm from "./SubmitForm";
 
@@ -13,6 +12,7 @@ interface IProps {
 }
 
 const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues}) => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addInfo, setAddInfo] = useState<formDataType>();
 
@@ -39,7 +39,7 @@ const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues
         title={modalTitle} open={isModalOpen} onOk={handleOk}
         onCancel={handleCancel} okText="确认" cancelText="取消" footer={null}
       >
-				<SubmitForm initialValue={submitValues}
+				<SubmitForm editVer={!clickButton} initialValue={submitValues}
           handleOK={handleOk} handleCancel={handleCancel}
         />
       </Modal>

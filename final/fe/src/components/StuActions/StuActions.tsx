@@ -10,6 +10,10 @@ interface IProps {
 }
 
 const StuActions: FC<IProps> = ({submitValues}) => {
+  const deleteStu = () => {
+    
+  };
+
   const items: MenuProps["items"] = [
     {
       key: "0",
@@ -21,7 +25,7 @@ const StuActions: FC<IProps> = ({submitValues}) => {
     },
     {
       key: "2",
-      label: "删除",
+      label: (<a onClick={deleteStu}>删除</a>),
     },
   ];
 
