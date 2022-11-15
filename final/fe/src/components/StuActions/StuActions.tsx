@@ -4,6 +4,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import "./StuActions.css";
 import ModalOut from "../ModalOut";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 interface IProps {
   submitValues: any;
@@ -11,7 +12,11 @@ interface IProps {
 
 const StuActions: FC<IProps> = ({submitValues}) => {
   const deleteStu = () => {
-    
+    axios.post("/api/stu/delete")
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => console.log(err));
   };
 
   const items: MenuProps["items"] = [

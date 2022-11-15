@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import formDataType from "../apis/dataTypes";
 import { useAppDispatch, useAppSelector } from "../apis/redux/store";
 import { addStu, selectStudents, toggleStu } from "../apis/redux/stuSlice";
@@ -32,7 +32,7 @@ const validateMessages = {
 };
 
 const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
-  const [stuInfos, setStuInfos] = useState<formDataType[]>(useAppSelector(selectStudents));
+  const stuInfos = useAppSelector(selectStudents);
   console.log("ss:  ", stuInfos);
   const dispatch = useAppDispatch();
 
@@ -53,15 +53,15 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
           mail: values.mail,
           avatar: initialValue.avatar
         };
+        dispatch(toggleStu(stu));
         const index = stuInfos.indexOf(data);
         console.log("index: ", index);
 
         axios.post("/api/stu/update", {stu, index})
         .then(res => {
-          console.log("/api/stu/create success: ", res.data);
+          console.log("/api/stu/update success: ", res.data);
         })
         .catch(err => console.log(err));
-        dispatch(toggleStu(stu));
       };
     } else {
       stu = {
@@ -74,12 +74,12 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel}) => {
         mail: values.mail,
         avatar: faker.image.avatar()
       };
+      dispatch(addStu(stu));
       axios.post("/api/stu/create", stu)
       .then(res => {
         console.log("/api/stu/create success: ", res.data);
       })
       .catch(err => console.log(err));
-      dispatch(addStu(stu));
     }
     handleOK();
   };

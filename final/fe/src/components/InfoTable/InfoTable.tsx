@@ -1,5 +1,4 @@
-import React, { FC, memo, useMemo, useState } from "react";
-import { faker } from "@faker-js/faker";
+import React, { FC } from "react";
 import { Image, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
@@ -62,7 +61,6 @@ interface IProps {
   stuInfos: formDataType[];
 }
 
-// todo: 分页问题，获取数据redux使用
 const InfoTable: FC<IProps> = ({stuInfos}) => {
 
   return (
@@ -70,6 +68,7 @@ const InfoTable: FC<IProps> = ({stuInfos}) => {
       columns={columns}
       dataSource={stuInfos}
       className="data-form"
+      pagination={{pageSize: 5}}
     />
   );
 };

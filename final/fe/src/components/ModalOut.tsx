@@ -1,6 +1,5 @@
 import { Button, Modal } from "antd";
 import React, { useState, FC } from "react";
-import formDataType from "../apis/dataTypes";
 import SubmitForm from "./SubmitForm";
 
 interface IProps {
@@ -14,7 +13,6 @@ interface IProps {
 const ModalOut: FC<IProps> = ({clickButton, text, icon, modalTitle, submitValues}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [addInfo, setAddInfo] = useState<formDataType>();
 
   const showModal = () => {
     setIsModalOpen(true);

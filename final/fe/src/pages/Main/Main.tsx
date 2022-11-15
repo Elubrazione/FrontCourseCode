@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SideBar from "../../components/SideBar/SideBar";
 import HeadBar from "../../components/HeadBar/HeadBar";
@@ -30,22 +30,24 @@ const Main = () => {
     .catch(err => console.log(err));
   }, []);
 
-  axios.get("/api/stu/info")
-  .then(res => {
-    console.log("/api/stu/info success: ", res.data);
-    const { code, message } = res.data;
-    if (code === -1) {
-      console.log(message);
-      setUnloginAlert(true);
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    } else {
-      dispatch(setStu(tempData));
-      setStuInfos(tempData);
-    }
-  })
-  .catch(err => console.log(err));
+  useEffect(() => {
+    axios.get("/api/stu/info")
+    .then(res => {
+      console.log("/api/stu/info success: ", res.data);
+      const { code, message } = res.data;
+      if (code === -1) {
+        console.log(message);
+        setUnloginAlert(true);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      } else {
+        dispatch(setStu(tempData));
+        setStuInfos(tempData);
+      }
+    })
+    .catch(err => console.log(err));
+  }, []);
 
   return (
     <>
