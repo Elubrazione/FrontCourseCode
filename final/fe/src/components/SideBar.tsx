@@ -1,4 +1,4 @@
-import React, { FC, ReactComponentElement, useState } from "react";
+import React, { FC, useState } from "react";
 import { TeamOutlined, AlertOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";

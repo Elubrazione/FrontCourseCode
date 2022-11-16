@@ -32,11 +32,25 @@ const InfoTable: FC<IProps> = ({stuInfos, updateStuInfos}) => {
       title: "年级",
       dataIndex: "year",
       key: "year",
+      defaultSortOrder: "descend",
+      sorter: (a, b) => Number(a.year.split("级")[0]) - Number(b.year.split("级")[0]),
     },
     {
       title: "性别",
       dataIndex: "gender",
       key: "gender",
+      // filters: [
+      //   {
+      //     text: "男",
+      //     value: "男",
+      //   },
+      //   {
+      //     text: "女",
+      //     value: "女",
+      //   },
+      // ],
+      // filterMultiple: false,
+      // onFilter: (value: string, record) => record.gender.indexOf(value) === 0,
       render: gender => {
         let color = "red";
         if (gender === "男") {
@@ -50,6 +64,8 @@ const InfoTable: FC<IProps> = ({stuInfos, updateStuInfos}) => {
       title: "电话",
       dataIndex: "phone",
       key: "phone",
+      defaultSortOrder: "descend",
+      sorter: (a, b) => a.phone - b.phone,
     },
     {
       title: "邮箱",
