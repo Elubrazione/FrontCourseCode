@@ -79,3 +79,9 @@
   width: 28em;
   margin-bottom: 1.5em;
 }
+
+.about-text {
+  font-size: large;
+  padding-left: 30px;
+  padding-top: 50px;
+}
