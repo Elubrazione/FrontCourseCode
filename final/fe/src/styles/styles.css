@@ -1,0 +1,81 @@
+/* SubmitForm */
+.modal-button {
+  margin-left: 23.5em;
+  display: flex;
+  gap: 1em;
+  align-items: flex-end;
+}
+
+/* StuDetails */
+.detail-list {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  align-items: flex-start;
+  margin-bottom: 3em;
+}
+
+/* StuAction */
+.setting-border {
+  width: 2em;
+  height: 2em;
+  border: 1.5px solid rgb(198, 197, 197);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SideBar */
+.ant-menu {
+  background-color: rgb(3, 21, 41);
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: rgb(53, 114, 255);
+  color: white;
+}
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 0px;
+}
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+  width: calc(100% + 0px);
+}
+
+/* InfoTable */
+.data-form {
+  margin: 0 1.5em;
+}
+.info {
+  width: 4em;
+  height: 4em;
+}
+
+
+/* HeadBar */
+.header {
+  display: flex;
+  align-items: center;
+}
+.header-text {
+  font-size: large;
+  color: white;
+}
+.user {
+  position: fixed;
+  right: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+/* ButtonArea */
+.selector-container {
+  display: flex;
+  gap: 1em;
+  margin-left: 1.5em;
+  margin-top: 1.5em;
+  width: 28em;
+  margin-bottom: 1.5em;
+}

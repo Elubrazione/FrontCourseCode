@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SideBar from "../../components/SideBar/SideBar";
-import HeadBar from "../../components/HeadBar/HeadBar";
+import SideBar from "../../components/SideBar";
+import HeadBar from "../../components/HeadBar";
 import { Breadcrumb, Layout } from "antd";
 import { useNavigate } from "react-router";
 import { Content } from "antd/lib/layout/layout";
-import StuDetails from "../../components/StuDetails/StuDetails";
+import StuDetails from "../../components/StuDetails";
 import "./StuSingle.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";

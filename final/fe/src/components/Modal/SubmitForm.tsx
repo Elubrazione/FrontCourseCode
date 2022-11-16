@@ -1,9 +1,10 @@
 import { faker } from "@faker-js/faker";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios";
+import { prefixSelector, suffixSelector } from "./selector";
 import React, { FC } from "react";
-import formDataType from "../apis/dataTypes";
-import "./styles.css";
+import formDataType from "../../apis/dataTypes";
+import "../../styles/styles.css";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const uuid = require("uuid").v4;
@@ -85,22 +86,6 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel, stuInfos,
     handleOK();
   };
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }} disabled={true} defaultValue="86">
-        <Option value="86">+86</Option>
-      </Select>
-    </Form.Item>
-  );
-
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select style={{ width: 70 }} disabled={true} defaultValue="college">
-        <Option value="college">学院</Option>
-      </Select>
-    </Form.Item>
-  );
-
   return (
     <Form {...layout} name="nest-messages" onFinish={onFinish}
           validateMessages={validateMessages}
@@ -146,10 +131,10 @@ const SubmitForm: FC<IProps> = ({initialValue, handleOK, handleCancel, stuInfos,
 
       <Form.Item>
         <div className="modal-button">
-          <Button className="button-cancel" onClick={() => handleCancel()}>
+          <Button onClick={() => handleCancel()}>
             取消
           </Button>
-          <Button type="primary" htmlType="submit" className="button-commit">
+          <Button type="primary" htmlType="submit">
             提交
           </Button>
         </div>

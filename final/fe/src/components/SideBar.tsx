@@ -4,7 +4,7 @@ import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";
 import type { MenuProps } from "antd";
 import "antd/dist/antd.css";
-import "./SideBar.css";
+import "../styles/styles.css";
 
 const SideBar: FC = () => {
   const items: MenuProps["items"] = [TeamOutlined].map((icon, index) => {

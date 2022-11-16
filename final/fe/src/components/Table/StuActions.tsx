@@ -1,11 +1,11 @@
 import { Dropdown, MenuProps, Modal } from "antd";
 import React, { FC } from "react";
 import { SettingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
-import "./StuActions.css";
-import ModalOut from "../ModalOut";
+import ModalOut from "../Modal/ModalOut";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import formDataType from "../../apis/dataTypes";
+import "../../styles/styles.css";
 
 interface IProps {
   submitValues: formDataType;

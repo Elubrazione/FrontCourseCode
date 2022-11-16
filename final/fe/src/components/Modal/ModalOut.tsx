@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import React, { useState, FC } from "react";
-import formDataType from "../apis/dataTypes";
+import formDataType from "../../apis/dataTypes";
 import SubmitForm from "./SubmitForm";
 
 interface IProps {

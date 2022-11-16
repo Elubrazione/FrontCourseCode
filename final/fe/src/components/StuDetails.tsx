@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Image } from "antd";
-import "./StuDetails.css";
+import "../styles/styles.css";
 
 interface IProps {
 	stuInfo: any;

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Button, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import ModalOut from "../ModalOut";
-import "./ButtonArea.css";
-import formDataType from "../../apis/dataTypes";
+import ModalOut from "./Modal/ModalOut";
+import formDataType from "../apis/dataTypes";
 import axios from "axios";
+import "../styles/styles.css";
 
 interface IProps {
   stuInfos: formDataType[];
@@ -39,7 +39,6 @@ const ButtonArea: FC<IProps> = ({stuInfos, updateStuInfos}) => {
         arr.push(stuInfos[i]);
       }
     }
-    console.log("search:", arr);
     updateStuInfos(arr);
     return arr;
   };
@@ -47,9 +46,7 @@ const ButtonArea: FC<IProps> = ({stuInfos, updateStuInfos}) => {
   const clearStuInfos = () => {
     updateStuInfos([]);
     axios.post("/api/stu/clear")
-    .then(res => {
-      console.log(res.data.list);
-    })
+    .then(res => console.log())
     .catch(err => console.log(err));
   };
 

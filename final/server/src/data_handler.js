@@ -43,7 +43,7 @@ async function getStuInfos (ctx, next) {
 };
 
 async function createStudent (ctx, next) {
-	stuInfos.push(ctx.request.body);
+	stuInfos.unshift(ctx.request.body);
 	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 		console.log();

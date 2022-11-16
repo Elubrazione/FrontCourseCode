@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { Image, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { formDataType } from "../../apis/dataTypes";
-import StuActions from "../StuActions/StuActions";
-import "./InfoTable.css";
+import StuActions from "./StuActions";
+import "../../styles/styles.css";
 
 interface IProps {
   stuInfos: formDataType[];

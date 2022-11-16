@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SideBar from "../../components/SideBar/SideBar";
-import HeadBar from "../../components/HeadBar/HeadBar";
+import SideBar from "../../components/SideBar";
+import HeadBar from "../../components/HeadBar";
 import "./Main.css";
 import { Alert, Layout } from "antd";
-import InfoTable from "../../components/InfoTable/InfoTable";
-import ButtonArea from "../../components/ButtonArea/ButtonArea";
+import InfoTable from "../../components/Table/InfoTable";
+import ButtonArea from "../../components/ButtonArea";
 import { useNavigate } from "react-router-dom";
 import formDataType from "../../apis/dataTypes";
 
@@ -22,10 +22,8 @@ const Main = () => {
   useEffect(() => {
     axios.get("/api/stu/info")
     .then(res => {
-      console.log("/api/stu/info success: ", res.data);
-      const { code, message } = res.data;
+      const { code } = res.data;
       if (code === -1) {
-        console.log(message);
         setUnloginAlert(true);
         setTimeout(() => {
           navigate("/");
@@ -33,7 +31,6 @@ const Main = () => {
       } else {
         axios.get("/api/stu/list")
         .then(res => {
-          console.log(res.data.list);
           setStuInfos(res.data.list);
         })
         .catch(err => console.log(err));

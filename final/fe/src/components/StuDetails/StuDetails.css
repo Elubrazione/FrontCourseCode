@@ -1,7 +1,0 @@
-.detail-list {
-    display: flex;
-    flex-direction: row;
-    gap: 3em;
-    align-items: flex-start;
-    margin-bottom: 3em;
-}
