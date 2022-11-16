@@ -43,7 +43,7 @@ const Main = () => {
     <>
       <HeadBar />
       <Layout>
-        <SideBar />
+        <SideBar keki={"1"}/>
         <Layout className="info-main">
           <ButtonArea stuInfos={stuInfos} updateStuInfos={updtStu}/>
           { unloginAlert?

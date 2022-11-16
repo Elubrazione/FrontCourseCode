@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import StuSingle from "./pages/StuSingle/StuSingle";
 import Main from "./pages/Main/Main";
 import NotFound from "./pages/NotFound/NotFound";
+import About from "./pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
     element: <Main />,
     errorElement: <NotFound />,
   },
+  {
+    path: "about",
+    element: <About />,
+    errorElement: <NotFound />
+  }
 ]);
 
 export default router;

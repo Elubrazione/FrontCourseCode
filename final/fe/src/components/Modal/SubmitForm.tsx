@@ -1,10 +1,10 @@
 import { faker } from "@faker-js/faker";
 import { Form, Input, Select, Button } from "antd";
 import axios from "axios";
-import { prefixSelector, suffixSelector } from "./selector";
 import React, { FC } from "react";
 import formDataType from "../../apis/dataTypes";
 import "../../styles/styles.css";
+import { prefixSelector, suffixSelector } from "./Selector";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const uuid = require("uuid").v4;

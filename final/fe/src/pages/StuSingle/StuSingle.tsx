@@ -45,7 +45,7 @@ const StuSingle = () => {
 		<>
 			<HeadBar />
 				<Layout>
-					<SideBar />
+					<SideBar keki={"1"}/>
 					<Layout className="info-main">
 						<Breadcrumb style={{ margin: "1em 1.5em" }}>
 							<Breadcrumb.Item onClick={linkToHome} href="">人员管理</Breadcrumb.Item>
