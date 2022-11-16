@@ -80,8 +80,43 @@
   margin-bottom: 1.5em;
 }
 
+/* About */
+.site-page-header {
+  background-color:white;
+}
+.about-head {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  /* padding-top: 5px; */
+}
+.about-containr {
+  display: flex;
+  flex-direction: column;
+}
+.timeline {
+  padding-top: 3em;
+  padding-left: 1em;
+  flex: 0.4;
+}
+.about-body {
+  display: flex;
+  background-color: white;
+  border-top: 3.5px solid rgb(222, 222, 222);
+  align-items: center;
+}
+.card {
+  position: relative;
+  right: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .about-text {
-  font-size: large;
-  padding-left: 30px;
-  padding-top: 50px;
+  flex: 1;
+  margin-top: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
