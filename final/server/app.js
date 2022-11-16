@@ -1,6 +1,4 @@
 const Koa = require('koa');
-const Router = require('koa-router')
-const onerror = require('koa-onerror');
 const static = require('koa-static');
 const views = require('koa-views');
 const session = require('koa-session');
@@ -39,7 +37,11 @@ app.use(
 app.use(json());
 app.use(logger());
 
-app.use(static(__dirname + '/dist/'));
+app.use(static(__dirname + '\\build'));
+
+// app.use(views(__dirname + '\\build', {
+//   map:{html:'ejs'}
+// }))
 
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx);

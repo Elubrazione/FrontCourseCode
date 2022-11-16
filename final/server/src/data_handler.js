@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
 const infoRouter = new Router();
-const file = path.join(__dirname, '/static/students.json');
+const file = path.join(__dirname, '/data/students.json');
 
 let stuInfos = [];
-fs.readFile('./static/students.json', 'utf-8', (err, data) => {
+fs.readFile('./data/students.json', 'utf-8', (err, data) => {
 	if (err) throw err;
 	console.log('origin_type: ', typeof(data));
 	stuInfos = JSON.parse(data);
@@ -44,7 +44,7 @@ async function getStuInfos (ctx, next) {
 
 async function createStudent (ctx, next) {
 	stuInfos.unshift(ctx.request.body);
-	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+	fs.writeFile('./data/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 		console.log();
 	});
@@ -54,7 +54,7 @@ async function createStudent (ctx, next) {
 async function deleteStudent (ctx, next) {
 	stuInfos = ctx.request.body;
 	console.log(ctx.request.body);
-	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+	fs.writeFile('./data/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 		console.log();
 	});
@@ -64,7 +64,7 @@ async function deleteStudent (ctx, next) {
 async function updateStudent (ctx, next) {
 	const { stu, index } = ctx.request.body;
 	stuInfos[index] = stu;
-	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+	fs.writeFile('./data/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 	});
 	ctx.body = {code: 0, message: "信息修改成功！"};
@@ -72,7 +72,7 @@ async function updateStudent (ctx, next) {
 
 async function clearStudent (ctx, next) {
 	stuInfos = [];
-	fs.writeFile('./static/students.json', JSON.stringify(stuInfos), (err) => {
+	fs.writeFile('./data/students.json', JSON.stringify(stuInfos), (err) => {
 		if (err) throw err;
 	});
 	ctx.body = {code: 0, message: "信息修改成功！"};
